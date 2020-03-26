@@ -4,6 +4,7 @@ import Navigation from '../../component/Navigation';
 import LogIn from '../../component/LogIn';
 import { connect } from "react-redux";
 import {setLoginUserAction} from '../../actions/setLoginUserAction';
+import {receiveUsersAction} from '../../actions/receiveUsersAction';
 
 const mapStateToProps = (state)=>{
   return {
@@ -17,12 +18,21 @@ const mapDispatchToProps = (dispatch)=>{
     onLoginChange: (event)=>{
     event.preventDefault();
     dispatch(setLoginUserAction(event.target.value))
+  },
+  retreiveUsers:()=>dispatch(receiveUsersAction())
 
-  }
+}
 }
 
-}
+
 class App extends Component{
+
+  componentDidMount(){
+    this.props.retreiveUsers();
+  }
+
+
+
   render(){
     const {users,loginField,onLoginChange} = this.props
     return(
