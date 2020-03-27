@@ -1,13 +1,110 @@
 body {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ====Navigation=== */
+
+.logo-image {
+  margin-right: 5px;
+}
+
+.icon-monster {
+  width: 13px;
+  height: auto;
+}
+
+.iconmonstr-circle-thin-icon {
+  margin: 0 2px 2px 0;
+  opacity: 0.7;
+}
+
+.iconmonstr-medal-icon {
+  margin: 0 2px 4px 0;
+  opacity: 0.5;
+}
+.iconmonstr-home-thin {
+  margin: 0 2px 4px 0;
+  opacity: 0.7;
+}
+.user-avatar{
+  width:30px;
+  height:30px;
+}
+
+/* ====Home=== */
+
+.home {
+  max-width: 576px;
+  margin: 0 auto;
+}
+.home-links-container {
+  justify-content: center;
+  /* background-color:#e5e5e5 ; */
+}
+
+.nav .nav-link {
+  color: #66c8ed;
+}
+
+/* ====Question=== */
+
+.user {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.user-name {
+  background-color: #f7f7f7;
+  padding: 7px 0 7px 20px;
+}
+.user-name h5{
+  margin: 0;
+}
+.user-info-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.image-container {
+  width: 130px;
+  height: 130px;
+  text-align: center;
+  padding: 5px;
+}
+
+.image-container img {
+  width: 100%;
+}
+.question-container {
+  width: 350px;
+  padding-top: 7px;
+}
+.btn-outline-info {
+  color: #66c8ed;
+  border-color: #66c8ed;
+}
+.question-container button:hover {
+  background-color: #66c8ed;
 }

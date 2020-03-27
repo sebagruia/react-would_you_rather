@@ -5,7 +5,7 @@ export const receiveUsersAction = () => dispatch => {
   return _getUsers().then(users => {
     dispatch({
       type: RECEIVE_USERS,
-      payload: users
+      payload:users
     });
   });
 };

@@ -1,45 +1,40 @@
 import React, { Component } from "react";
 import "./App.css";
-import Navigation from '../../component/Navigation';
-import LogIn from '../../component/LogIn';
+import Navigation from "../../component/Navigation";
+import LogIn from "../../component/LogIn";
+import Home from "../../component/Home";
 import { connect } from "react-redux";
-import {setLoginUserAction} from '../../actions/setLoginUserAction';
-import {receiveUsersAction} from '../../actions/receiveUsersAction';
+import { receiveUsersAction } from "../../actions/receiveUsersAction";
+import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
 
-const mapStateToProps = (state)=>{
+const mapStateToProps = state => {
   return {
-    users:state.usersReducer.users,
-    loginField:state.chooseLoginReducer.loginField
-  }
-}
+    users: state.usersReducer.users,
+    questions: state.questionsReducer.questions,
+    logIn: state.logInReducer.logIn,
+    userName:state.chooseLoginReducer.loginField
+  };
+};
 
-const mapDispatchToProps = (dispatch)=>{
-  return{
-    onLoginChange: (event)=>{
-    event.preventDefault();
-    dispatch(setLoginUserAction(event.target.value))
-  },
-  retreiveUsers:()=>dispatch(receiveUsersAction())
+const mapDispatchToProps = dispatch => {
+  return {
+    retreiveUsers: () => dispatch(receiveUsersAction()),
+    retreiveQuestions: () => dispatch(receiveAllQuestionsAction())
+  };
+};
 
-}
-}
-
-
-class App extends Component{
-
-  componentDidMount(){
+class App extends Component {
+  componentDidMount() {
     this.props.retreiveUsers();
+    this.props.retreiveQuestions();
   }
 
-
-
-  render(){
-    const {users,loginField,onLoginChange} = this.props
-    return(
+  render() {
+    return (
       <div>
-        <Navigation />
-        <LogIn users={users} onLoginChange={onLoginChange} loginField={loginField}/>
-
+        <Navigation logIn = {this.props.logIn} userName = {this.props.userName}/>
+        <LogIn />
+        <Home />
       </div>
     );
   }
