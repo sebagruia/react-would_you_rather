@@ -1,15 +1,24 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { connect } from "react-redux";
+import { logAction } from "../actions/logAction";
+import { setLoginUserAction } from "../actions/setLoginUserAction";
+import { Route, Link } from "react-router-dom";
 
-const Navigation = (props) => {
-  const{logIn, userName} = props;
+const Navigation = props => {
+  const { userName, avatarUrl } = props;
+
+  const onClick = () => {
+    props.dispatch(logAction(false));
+    props.dispatch(setLoginUserAction(""));
+  };
+
 
   return (
-    
-      <Navbar bg="light" expand="lg" className={`${logIn ? null : 'hidden'}`}>
-        <div className="container">
-        <Navbar.Brand href="#home">
+    <Navbar bg="light" expand="lg">
+      <div className="container">
+        <Navbar.Brand to="#home">
           <img
             src="../../images/logo would you rather.png"
             className="d-inline-block align-top logo-image"
@@ -22,52 +31,47 @@ const Navigation = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link href="#Home" >
+            <Link to="/unanswered-questions">
               <img
                 className=" icon-monster iconmonstr-home-thin"
                 src="../../icons/iconmonstr-home-thin-240.png"
                 alt="a medal"
               />
               Home
-            </Nav.Link>
-            <Nav.Link href="#Leaderbord" >
+            </Link>
+            <Link to="/leaderbord">
               <img
                 className=" icon-monster iconmonstr-medal-icon"
                 src="../../icons/iconmonstr-medal-3-240.png"
                 alt="a medal"
               />
               Leaderboard
-            </Nav.Link>
-            <Nav.Link href="#link" >
+            </Link>
+            <Link to="/add-question">
               <img
                 className="icon-monster iconmonstr-circle-thin-icon"
                 src="../../icons/iconmonstr-plus-circle-thin-240.png"
                 alt="plus sign"
               />
               Add question
-            </Nav.Link>
-            <Nav.Link href="#link" >
-              <img
-                className="user-avatar"
-                src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurvy&accessoriesType=Kurt&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Side&eyebrowType=SadConcernedNatural&mouthType=Default&skinColor=DarkBrown"
-                alt="user avatar"
-              />
+            </Link>
+            <Link to="/user">
+              <img className="user-avatar" src={avatarUrl} alt="user avatar" />
               Hello, {userName}
-            </Nav.Link>
-            <Nav.Link href="#link" >
+            </Link>
+            <Link to="/logIn" onClick={onClick}>
               <img
-                className="icon-monster iconmonstr-circle-thin-icon"
-                src="../../icons/iconmonstr-plus-circle-thin-240.png"
+                className="icon-monster iconmonstr-minus-circle-thin-icon"
+                src="../../icons/iconmonstr-minus-circle-thin-240.png"
                 alt="plus sign"
               />
               LogOut
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
-        </div>
-      </Navbar>
-   
+      </div>
+    </Navbar>
   );
 };
 
-export default Navigation;
+export default connect()(Navigation);

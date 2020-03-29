@@ -1,29 +1,41 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import {Provider} from 'react-redux';
-import thunkMiddleware from 'redux-thunk';
-import logger from './middleware/logger';
-import {usersReducer} from './reducers/usersReducer';
-import {chooseLoginReducer} from './reducers/chooseLoginUserReducer';
-import {questionsReducer} from './reducers/questionsReducer';
-import {logInReducer} from './reducers/logInReducer';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './container/App/App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
+import { BrowserRouter,Route } from "react-router-dom";
+import thunkMiddleware from "redux-thunk";
+import logger from "./middleware/logger";
+import { usersReducer } from "./reducers/usersReducer";
+import { chooseLoginReducer } from "./reducers/chooseLoginUserReducer";
+import { questionsReducer } from "./reducers/questionsReducer";
+import { logReducer } from "./reducers/logReducer";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./container/App/App";
+import * as serviceWorker from "./serviceWorker";
 
-const rootReducer = combineReducers({usersReducer, chooseLoginReducer,questionsReducer,logInReducer});
+const rootReducer = combineReducers({
+  usersReducer,
+  chooseLoginReducer,
+  questionsReducer,
+  logReducer
+});
 //The code below is just for enabling Chrome Redux DEvTools=============
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//The "store" const bellow has the composeEnhancers function as paramter because I wanted to use Chrome Redux DEvTools, the app works without it just fine 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware, logger)));
+//The "store" const bellow has the composeEnhancers function as paramter because I wanted to use Chrome Redux DEvTools, the app works without it just fine
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunkMiddleware, logger))
+);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, 
-document.getElementById('root'));
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
