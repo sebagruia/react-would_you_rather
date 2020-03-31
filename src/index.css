@@ -104,7 +104,6 @@ a:hover {
 }
 .home-links-container {
   justify-content: center;
-  /* background-color:#e5e5e5 ; */
 }
 
 .nav .nav-link {
@@ -166,6 +165,7 @@ a:hover {
 }
 
 /* ====UserStats=== */
+
 .userStats-container {
   max-width: 480px;
   margin: 20px auto;
@@ -219,7 +219,7 @@ a:hover {
   border-bottom: 2px solid #e5e5e5;
 }
 .created-questions{
-  margin-top: 3px;
+  margin-top: 4px;
 }
 .userStats-score {
   display: flex;
