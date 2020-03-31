@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { BrowserRouter,Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import thunkMiddleware from "redux-thunk";
 import logger from "./middleware/logger";
 import { usersReducer } from "./reducers/usersReducer";
@@ -31,7 +31,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+        <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

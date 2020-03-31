@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
-import { Route, Link } from "react-router-dom";
-import Navigation from "../../component/Navigation";
+import { Route, Redirect } from "react-router-dom";
 import LogIn from "../../component/LogIn";
 import Home from "../../component/Home";
+import Navigation from "../../component/Navigation";
+import Leaderbord from "../../component/Leaderboard";
 import { connect } from "react-redux";
 import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
@@ -41,40 +42,31 @@ class App extends Component {
   }
 
   render() {
-    const { users, logIn, userName, avatarUrl, questions } = this.props;
+    const { users, logIn, userName, questions, avatarUrl } = this.props;
     return (
       <div>
-          {/* <Route
-          path="/"
-          render={() => {
-            return <LogIn />;
-          }}
-        />
-        <Route
-          path="/home"
-          render={() => {
-            return (
-              <Fragment>
-                <Navigation userName={userName} avatarUrl={avatarUrl} />
-                <Home users={users} userName={userName} questions={questions} />
-              </Fragment>
-            );
-          }}
-        /> */}
-
-      
+        <Route exact path="/">
+          {!logIn ? <Redirect to="/login" /> : null}
+        </Route>
+        <Route exact path="/login" component={LogIn} />
 
         {logIn ? (
-            <Navigation userName={userName} avatarUrl={avatarUrl} />
-          ) : null}
-
-          {!logIn ? (
-              <LogIn />
-          ) : null}
-
-          {logIn ? (
-            <Home users={users} userName={userName} questions={questions} />
-          ) : null}
+          <Fragment>
+            <Redirect to="/" />
+            <Route path="/">
+              <Navigation userName={userName} avatarUrl={avatarUrl} />
+            </Route>
+            <Route path="/">
+              <Redirect to="/home/questions/unanswered-questions" />
+            </Route>
+            <Route path="/home">
+              <Home users={users} userName={userName} questions={questions} />
+            </Route>
+            <Route exact path="/leaderbord">
+              <Leaderbord users={users} />
+            </Route>
+          </Fragment>
+        ) : null}
       </div>
     );
   }

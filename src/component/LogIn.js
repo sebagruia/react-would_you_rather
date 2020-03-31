@@ -31,61 +31,47 @@ const mapDispatchToProps = dispatch => {
 
 class LogIn extends Component {
   render() {
-    const {
-      users,
-      onLoginChange,
-      onSubmitUser,
-      loginField,
-      logIn
-    } = this.props;
+    const { users, onLoginChange, onSubmitUser, loginField } = this.props;
 
-    if (logIn) {
-      return null;
-    } else {
-      return (
-        <Card className="logIn-form m-auto">
-          <Card.Title className="card-title">
-            <h5>Welcome to the Would You Rather App!</h5>
-            <h6>Please log in to continue</h6>
-          </Card.Title>
-          <Card.Body>
-            <Card.Img
-              className="logo-img-container"
-              variant="top"
-              src="../../images/logo would you rather.png"
-            />
-            <Form
-              className="submit-form"
-              onSubmit={
-                loginField !== "Select User" && loginField !== ""
-                  ? onSubmitUser
-                  : null
-              }
+    return (
+      <Card className="logIn-form m-auto">
+        <Card.Title className="card-title">
+          <h5>Welcome to the Would You Rather App!</h5>
+          <h6>Please log in to continue</h6>
+        </Card.Title>
+        <Card.Body>
+          <Card.Img
+            className="logo-img-container"
+            variant="top"
+            src="../../images/logo would you rather.png"
+          />
+          <Form
+            className="submit-form"
+            onSubmit={
+              loginField !== "Select User" && loginField !== ""
+                ? onSubmitUser
+                : null
+            }
+          >
+            <Form.Control
+              className="select-user"
+              onChange={onLoginChange}
+              as="select"
             >
-              <Form.Control
-                className="select-user"
-                onChange={onLoginChange}
-                as="select"
-              >
-                <option defaultValue>Select User</option>
-                {users.map(user => (
-                  <option
-                    style={{ backgroundImage: `url(+ ${user.avatarURL} +)` }}
-                    key={user.id}
-                    value={user.name}
-                  >
-                    {user.name}
-                  </option>
-                ))}
-              </Form.Control>
-              <Button type="submit" block variant="primary">
-                Log In
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
-      );
-    }
+              <option defaultValue>Select User</option>
+              {users.map(user => (
+                <option key={user.id} value={user.name}>
+                  {user.name}
+                </option>
+              ))}
+            </Form.Control>
+            <Button type="submit" block variant="primary">
+              Log In
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    );
   }
 }
 
