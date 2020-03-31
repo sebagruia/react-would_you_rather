@@ -258,3 +258,29 @@ a:hover {
   vertical-align: middle;
 }
 
+/* ====CreateQuestion=== */
+.createQuestion{
+    max-width: 480px;
+    margin: 20px auto;
+}
+
+.card-header{
+  text-align: center;
+}
+
+.createQuestion hr::after{
+  content: "OR";
+  position: relative;
+  top: -13px;
+  left: 45%;
+  display: inline-block;
+  padding: 0 0.25em;
+  background-color: #fff;
+}
+
+.createQuestion-form h6{
+  margin-bottom: 20px;
+}
+.createQuestion-form .form-group{
+  margin:1.2rem 0;
+}

@@ -5,6 +5,7 @@ import LogIn from "../../component/LogIn";
 import Home from "../../component/Home";
 import Navigation from "../../component/Navigation";
 import Leaderbord from "../../component/Leaderboard";
+import CreateQuestion from "../../component/CreateQuestion";
 import { connect } from "react-redux";
 import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
@@ -64,6 +65,9 @@ class App extends Component {
             </Route>
             <Route exact path="/leaderbord">
               <Leaderbord users={users} />
+            </Route>
+            <Route exact path="/add-question">
+              <CreateQuestion />
             </Route>
           </Fragment>
         ) : null}
