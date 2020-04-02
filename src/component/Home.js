@@ -4,7 +4,7 @@ import CategorizedQuestions from "../component/CategorizedQuestions";
 
 const Home = props => {
   const { users, userName, questions } = props;
-  const selectUser = users.filter(user => user.name === userName);
+  const selectUser = Object.values(users).filter(user => user.name === userName);
 
   return (
     <Fragment>

@@ -59,7 +59,7 @@ class LogIn extends Component {
               as="select"
             >
               <option defaultValue>Select User</option>
-              {users.map(user => (
+              {Object.values(users).map(user => (
                 <option key={user.id} value={user.name}>
                   {user.name}
                 </option>

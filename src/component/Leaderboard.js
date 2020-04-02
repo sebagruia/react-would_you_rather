@@ -4,10 +4,9 @@ import UserStats from "../component/UserStats";
 const Leaderbord = props => {
   const { users } = props;
   // The user array is sorted according to the SUM of "answered questions+created questions" in the descending order
-  const sortedUSers = users.sort((a,b)=>{
+  const sortedUSers = Object.values(users).sort((a,b)=>{
     return (Object.keys(b.answers).length + b.questions.length) -  (Object.keys(a.answers).length + a.questions.length); 
   });
-  console.log(sortedUSers)
   return (
     <div className="leaderboard">
       {sortedUSers.map(user => {

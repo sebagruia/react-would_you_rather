@@ -11,7 +11,7 @@ import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
 
 const mapStateToProps = state => {
-  const users = state.usersReducer.users;
+  const users = Object.values(state.usersReducer.users);
   const userName = state.chooseLoginReducer.loginField;
   const getAvatarrUrl = () => {
     for (let user of users) {
@@ -20,12 +20,21 @@ const mapStateToProps = state => {
       }
     }
   };
+  const getUserId = () => {
+    for (let user of users) {
+      if (user.name === userName) {
+        return user.id;
+      }
+    }
+  };
+
   return {
     users: state.usersReducer.users,
     questions: state.questionsReducer.questions,
     logIn: state.logReducer.logIn,
     userName: state.chooseLoginReducer.loginField,
-    avatarUrl: getAvatarrUrl()
+    avatarUrl: getAvatarrUrl(),
+    userId:getUserId()
   };
 };
 
@@ -43,7 +52,7 @@ class App extends Component {
   }
 
   render() {
-    const { users, logIn, userName, questions, avatarUrl } = this.props;
+    const { users, logIn, userName, questions, avatarUrl, userId } = this.props;
     return (
       <div>
         <Route exact path="/">
@@ -67,7 +76,7 @@ class App extends Component {
               <Leaderbord users={users} />
             </Route>
             <Route exact path="/add-question">
-              <CreateQuestion />
+              <CreateQuestion userId={userId} />
             </Route>
           </Fragment>
         ) : null}

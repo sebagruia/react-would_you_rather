@@ -7,12 +7,12 @@ import Question from "../component/Question";
 const CategorizedQuestions = props => {
   const { users, questions, selectUser } = props;
 
-  const answeredQuestions = questions.filter(
+  const answeredQuestions = Object.values(questions).filter(
     question =>
       question.optionOne.votes.includes(selectUser[0].id) ||
       question.optionTwo.votes.includes(selectUser[0].id)
   );
-  const unansweredQuestions = questions.filter(
+  const unansweredQuestions = Object.values(questions).filter(
     question =>
       !question.optionOne.votes.includes(selectUser[0].id) &&
       !question.optionTwo.votes.includes(selectUser[0].id)
@@ -51,7 +51,7 @@ const CategorizedQuestions = props => {
           exact
           path="/home/questions/unanswered-questions"
           render={() => {
-            return users.map(user => {
+            return Object.values(users).map(user => {
               return unansweredQuestions.map(question => {
                 return user.id === question.author ? (
                   <Question
@@ -69,7 +69,7 @@ const CategorizedQuestions = props => {
           exact
           path="/home/questions/answered-questions"
           render={() => {
-            return users.map(user => {
+            return Object.values(users).map(user => {
               return answeredQuestions.map(question => {
                 return user.id === question.author ? (
                   <Question
