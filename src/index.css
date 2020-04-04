@@ -164,6 +164,10 @@ a:hover {
   background-color: #66c8ed;
 }
 
+/* ====Poll=== */
+.poll{
+  max-width:480px;
+}
 /* ====UserStats=== */
 
 .userStats-container {

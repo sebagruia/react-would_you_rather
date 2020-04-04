@@ -5,12 +5,13 @@ import LogIn from "../../component/LogIn";
 import Home from "../../component/Home";
 import Navigation from "../../component/Navigation";
 import Leaderbord from "../../component/Leaderboard";
+import Poll from "../../component/Poll";
 import CreateQuestion from "../../component/CreateQuestion";
 import { connect } from "react-redux";
 import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const users = Object.values(state.usersReducer.users);
   const userName = state.chooseLoginReducer.loginField;
   const getAvatarrUrl = () => {
@@ -34,14 +35,14 @@ const mapStateToProps = state => {
     logIn: state.logReducer.logIn,
     userName: state.chooseLoginReducer.loginField,
     avatarUrl: getAvatarrUrl(),
-    userId:getUserId()
+    userId: getUserId(),
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     retreiveUsers: () => dispatch(receiveUsersAction()),
-    retreiveQuestions: () => dispatch(receiveAllQuestionsAction())
+    retreiveQuestions: () => dispatch(receiveAllQuestionsAction()),
   };
 };
 
@@ -77,6 +78,9 @@ class App extends Component {
             </Route>
             <Route exact path="/add-question">
               <CreateQuestion userId={userId} />
+            </Route>
+            <Route exact path="/questions/:question_id">
+              <Poll />
             </Route>
           </Fragment>
         ) : null}

@@ -7,7 +7,6 @@ const initialStateUsers = {
 
 export const usersReducer = (state = initialStateUsers, action = {}) => {
   const formattedQuestion = action.payload;
-  console.log(formattedQuestion);
   switch (action.type) {
     case RECEIVE_USERS:
       return { ...state, users: action.payload };

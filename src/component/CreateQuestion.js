@@ -1,12 +1,12 @@
 import React from "react";
-import { Fragment,useState } from "react";
+import { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { addQuestion } from "../actions/addQuestionAction";
-import {addQuestionToUSer} from '../actions/addQuestionToUserAction';
+import { addQuestionToUSer } from "../actions/addQuestionToUserAction";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const CreateQuestion = props => {
   const { dispatch, userId } = props;
@@ -29,20 +29,18 @@ const CreateQuestion = props => {
 
   const onSubmitNewQuestion = event => {
     event.preventDefault();
-    if(optionOneText!=="" && optionTwoText!==""){
+    if (optionOneText !== "" && optionTwoText !== "") {
       dispatch(addQuestion({ optionOneText, optionTwoText, author }));
       dispatch(addQuestionToUSer({ optionOneText, optionTwoText, author }));
       redirectForm();
     }
-   
   };
 
   return (
     <Fragment>
-      {redirect ? 
-        <Redirect to="/home"/>
-        : 
-        
+      {redirect ? (
+        <Redirect to="/home" />
+      ) : (
         <Card className="createQuestion">
           <Card.Header>
             <h3>Add a New Question</h3>
@@ -75,7 +73,7 @@ const CreateQuestion = props => {
             </Form>
           </Card.Body>
         </Card>
-       }
+      )}
     </Fragment>
   );
 };
