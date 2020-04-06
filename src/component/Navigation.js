@@ -30,7 +30,7 @@ const Navigation = props => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <NavLink to="/home/questions/unanswered-questions" activeClassName="selected">
+            <NavLink to="/questions/unanswered-questions" activeClassName="selected">
               <i className="fas fa-home"></i>
               Home
             </NavLink>

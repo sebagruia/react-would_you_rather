@@ -10,22 +10,15 @@ const Home = (props) => {
 
   return (
     <Fragment>
-      <Route exact path="/home">
-        <Redirect to="/home/questions/unanswered-questions" />
-      </Route>
-      <Route
-        path="/home"
-        render={() => {
-          return (
+      {/* <Route exact path="/">
+        <Redirect to="/questions/unanswered-questions" />
+      </Route> */}
             <CategorizedQuestions
               users={users}
               userName={userName}
               questions={questions}
               selectUser={selectUser}
             />
-          );
-        }}
-      />
     </Fragment>
   );
 };

@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Switch, withRouter } from "react-router-dom";
 import LogIn from "../../component/LogIn";
-import Home from "../../component/Home";
 import Navigation from "../../component/Navigation";
 import Leaderbord from "../../component/Leaderboard";
 import Poll from "../../component/Poll";
+import PollResults from "../../component/PollResults";
 import CreateQuestion from "../../component/CreateQuestion";
+import CategorizedQuestions from "../../component/CategorizedQuestions";
 import { connect } from "react-redux";
 import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
@@ -53,7 +54,15 @@ class App extends Component {
   }
 
   render() {
-    const { users, logIn, userName, questions, avatarUrl, userId } = this.props;
+    const {
+      users,
+      logIn,
+      userName,
+      questions,
+      avatarUrl,
+      userId,
+      location
+    } = this.props;
     return (
       <div>
         <Route exact path="/">
@@ -63,25 +72,31 @@ class App extends Component {
 
         {logIn ? (
           <Fragment>
-            <Redirect to="/" />
             <Route path="/">
               <Navigation userName={userName} avatarUrl={avatarUrl} />
             </Route>
-            <Route path="/">
-              <Redirect to="/home/questions/unanswered-questions" />
-            </Route>
-            <Route path="/home">
-              <Home users={users} userName={userName} questions={questions} />
-            </Route>
-            <Route exact path="/leaderbord">
-              <Leaderbord users={users} />
-            </Route>
-            <Route exact path="/add-question">
-              <CreateQuestion userId={userId} />
-            </Route>
-            <Route exact path="/questions/:question_id">
-              <Poll />
-            </Route>
+            <Redirect to="/questions/unanswered-questions" />
+            <Switch>
+              <Route path="/questions/unanswered-questions">
+                <CategorizedQuestions
+                  users={users}
+                  userName={userName}
+                  questions={questions}
+                />
+              </Route>
+              <Route exact path="/leaderbord">
+                <Leaderbord users={users} />
+              </Route>
+              <Route exact path="/add-question">
+                <CreateQuestion userId={userId} />
+              </Route>
+              <Route path='/question/'>
+                <Poll />
+              </Route>
+              <Route exact path={`/pollresults/${location.state ? location.state.questionId :null}`}>
+                <PollResults />
+              </Route>
+            </Switch>
           </Fragment>
         ) : null}
       </div>
@@ -89,4 +104,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

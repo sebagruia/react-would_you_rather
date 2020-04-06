@@ -5,7 +5,10 @@ import { Route, NavLink } from "react-router-dom";
 import Question from "../component/Question";
 
 const CategorizedQuestions = props => {
-  const { users, questions, selectUser } = props;
+  const { users, questions, userName } = props;
+  const selectUser = Object.values(users).filter(
+    (user) => user.name === userName
+  );
 
   const answeredQuestions = Object.values(questions).filter(
     question =>
@@ -27,7 +30,7 @@ const CategorizedQuestions = props => {
         >
           <Nav.Item>
             <NavLink
-              to="/home/questions/unanswered-questions"
+              to="/questions/unanswered-questions"
               className="nav-link"
               activeClassName="active"
             >
@@ -37,7 +40,7 @@ const CategorizedQuestions = props => {
 
           <Nav.Item>
             <NavLink
-              to="/home/questions/answered-questions"
+              to="/questions/answered-questions"
               className="nav-link"
               activeClassName="active"
             >
@@ -49,7 +52,7 @@ const CategorizedQuestions = props => {
       <Card.Body>
         <Route
           exact
-          path="/home/questions/unanswered-questions"
+          path="/questions/unanswered-questions"
           render={() => {
             return Object.values(users).map(user => {
               return unansweredQuestions.map(question => {
@@ -67,7 +70,7 @@ const CategorizedQuestions = props => {
         />
         <Route
           exact
-          path="/home/questions/answered-questions"
+          path="/questions/answered-questions"
           render={() => {
             return Object.values(users).map(user => {
               return answeredQuestions.map(question => {
