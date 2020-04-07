@@ -75,9 +75,10 @@ class App extends Component {
             <Route path="/">
               <Navigation userName={userName} avatarUrl={avatarUrl} />
             </Route>
-            <Redirect to="/questions/unanswered-questions" />
+            <Redirect to="/questions" />
             <Switch>
-              <Route path="/questions/unanswered-questions">
+              <Route path="/questions">
+                <Redirect to="/questions/unanswered-questions" />
                 <CategorizedQuestions
                   users={users}
                   userName={userName}
@@ -90,10 +91,10 @@ class App extends Component {
               <Route exact path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
-              <Route path='/question/'>
-                <Poll />
+              <Route exact path={`/question/:${location.state ? location.state.questionId :null}`}>
+                <Poll authedUser = {userId}/>
               </Route>
-              <Route exact path={`/pollresults/${location.state ? location.state.questionId :null}`}>
+              <Route exact path={`/pollresults/:${location.state ? location.state.questionId :null}`}>
                 <PollResults />
               </Route>
             </Switch>

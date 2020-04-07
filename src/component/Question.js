@@ -15,7 +15,7 @@ const Question = (props) => {
       {redirect ? (
         <Redirect
           to={{
-            pathname:`/question/${question.id}`,
+            pathname:`/question/:${question.id}`,
             state: {
               userName: userName,
               avatarUrl: avatarUrl,

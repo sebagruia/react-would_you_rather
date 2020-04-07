@@ -13,12 +13,12 @@ const PollResults = (props) => {
           <img src={avatarUrl} alt="avatar" />
         </div>
         <div className="pollresults">
-          <h5>Results:</h5>
+          <h5 className="pollresults-title">Results:</h5>
           <div className="pollresults-container ">
-            <div className="pollresults-question">{question.optionOne.text}?</div>
+            <div className="pollresults-question"><h6>{`${question.optionOne.text}?`}</h6></div>
             <div className="progress" style={{ height: "20px" }}>
               <div
-                class="progress-bar"
+                className="progress-bar"
                 role="progressbar"
                 style={{ width: "25%" }}
                 aria-valuenow="25"
@@ -34,15 +34,16 @@ const PollResults = (props) => {
             </div>
 
             <div className="pollresults-container">
-              <div className="pollresults-question">{question.optionTwo.text}?</div>
+              <div className="pollresults-question"><h6>{`${question.optionTwo.text}?`}</h6></div>
               <div className="progress" style={{ height: "20px" }}>
                 <div
-                  class="progress-bar"
+                  className="progress-bar"
                   role="progressbar"
                   style={{ width: "25%" }}
                   aria-valuenow="35"
                   aria-valuemin="0"
                   aria-valuemax="100"
+                  
                 >
                   35%
                 </div>
