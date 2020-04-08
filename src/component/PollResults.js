@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 
 const PollResults = (props) => {
   const { userName, avatarUrl, question } = props.location.state;
+  const questionOptionOneVotes = question.optionOne.votes.length;
+  const questionOptionTwoVotes = question.optionTwo.votes.length;
   return (
     <div className="user poll">
       <div className="user-name">
@@ -20,16 +22,16 @@ const PollResults = (props) => {
               <div
                 className="progress-bar"
                 role="progressbar"
-                style={{ width: "25%" }}
+                style={{ width: `${questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%`}}
                 aria-valuenow="25"
                 aria-valuemin="0"
                 aria-valuemax="100"
               >
-                25%
+                {questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%
               </div>
               </div>
               <div className="votes">
-                <h6>{`${question.optionOne.votes.length} out of ${question.optionOne.votes.length+question.optionTwo.votes.length} votes`}</h6>
+                <h6>{`${questionOptionOneVotes} out of ${questionOptionOneVotes + questionOptionTwoVotes} votes`}</h6>
               </div>
             </div>
 
@@ -39,17 +41,17 @@ const PollResults = (props) => {
                 <div
                   className="progress-bar"
                   role="progressbar"
-                  style={{ width: "25%" }}
+                  style={{ width: `${questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%` }}
                   aria-valuenow="35"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   
                 >
-                  35%
+                  {questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%
                 </div>
                 </div>
               <div className="votes">
-                <h6>{`${question.optionTwo.votes.length} out of ${question.optionOne.votes.length+question.optionTwo.votes.length} votes`}</h6>
+                <h6>{`${questionOptionTwoVotes} out of ${questionOptionOneVotes + questionOptionTwoVotes} votes`}</h6>
               </div>
             </div>
         </div>

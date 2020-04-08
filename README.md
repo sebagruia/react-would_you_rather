@@ -1,6 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Would You Rather Project
+## Project Link
+[Would You Rather](https://sebagruia.github.io/would-you-rather-game/)
 
 ## Descriptions
 
