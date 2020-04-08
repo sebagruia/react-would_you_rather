@@ -2,7 +2,7 @@
   "name": "react-would_you_rather",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sebagruia.github.io/would-you-rather-game/",
+  "homepage": "https://sebagruia.github.io/react-would_you_rather/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
