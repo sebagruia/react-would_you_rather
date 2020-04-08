@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from "../actions/receiveUsersAction";
-import { ADD_QUESTION_TO_USER } from "../actions/addQuestionToUserAction";
+import { ADD_QUESTION } from "../actions/addQuestionAction";
 import { SAVE_ANSWER } from "../actions/saveAnswerAction";
 
 const initialStateUsers = {
@@ -11,7 +11,7 @@ export const usersReducer = (state = initialStateUsers, action = {}) => {
   switch (action.type) {
     case RECEIVE_USERS:
       return { ...state, users: action.payload };
-    case ADD_QUESTION_TO_USER:
+    case ADD_QUESTION:
       const formattedQuestion = action.payload;
       return {
         ...state,

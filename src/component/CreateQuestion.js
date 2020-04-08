@@ -2,7 +2,6 @@ import React from "react";
 import { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { addQuestion } from "../actions/addQuestionAction";
-import { addQuestionToUSer } from "../actions/addQuestionToUserAction";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -31,7 +30,6 @@ const CreateQuestion = props => {
     event.preventDefault();
     if (optionOneText !== "" && optionTwoText !== "") {
       dispatch(addQuestion({ optionOneText, optionTwoText, author }));
-      dispatch(addQuestionToUSer({ optionOneText, optionTwoText, author }));
       redirectForm();
     }
   };

@@ -22,12 +22,12 @@ const PollResults = (props) => {
               <div
                 className="progress-bar"
                 role="progressbar"
-                style={{ width: `${questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%`}}
+                style={{ width: `${Math.round(questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100)}%`}}
                 aria-valuenow="25"
                 aria-valuemin="0"
                 aria-valuemax="100"
               >
-                {questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%
+                {Math.round(questionOptionOneVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100)}%
               </div>
               </div>
               <div className="votes">
@@ -41,13 +41,13 @@ const PollResults = (props) => {
                 <div
                   className="progress-bar"
                   role="progressbar"
-                  style={{ width: `${questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%` }}
+                  style={{ width: `${Math.round(questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100)}%` }}
                   aria-valuenow="35"
                   aria-valuemin="0"
                   aria-valuemax="100"
                   
                 >
-                  {questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100}%
+                  {Math.round(questionOptionTwoVotes/(questionOptionOneVotes + questionOptionTwoVotes) * 100)}%
                 </div>
                 </div>
               <div className="votes">
