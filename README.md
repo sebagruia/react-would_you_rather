@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Would You Rather Project
 ## Project Link
-[Would You Rather](https://sebagruia.github.io/would-you-rather-game/)
+[Would You Rather](https://sebagruia.github.io/react-would_you_rather/)
 
 ## Descriptions
 
