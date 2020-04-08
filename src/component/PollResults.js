@@ -29,7 +29,7 @@ const PollResults = (props) => {
               </div>
               </div>
               <div className="votes">
-                <h6>1 out of 3 votes</h6>
+                <h6>{`${question.optionOne.votes.length} out of ${question.optionOne.votes.length+question.optionTwo.votes.length} votes`}</h6>
               </div>
             </div>
 
@@ -49,7 +49,7 @@ const PollResults = (props) => {
                 </div>
                 </div>
               <div className="votes">
-                <h6>2 out of 3 votes</h6>
+                <h6>{`${question.optionTwo.votes.length} out of ${question.optionOne.votes.length+question.optionTwo.votes.length} votes`}</h6>
               </div>
             </div>
         </div>

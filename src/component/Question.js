@@ -1,26 +1,38 @@
 import React, { useState, Fragment } from "react";
-import {  Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Question = (props) => {
-  const { userName, avatarUrl, question } = props;
+  const { userName, avatarUrl, question, answered } = props;
   const [redirect, setRedirect] = useState(false);
-
   const redirectToPoll = (event) => {
     event.preventDefault();
     setRedirect(true);
   };
   return (
     <Fragment>
-      {redirect ? (
+      {redirect && !answered ? (
         <Redirect
           to={{
-            pathname:`/question/:${question.id}`,
+            pathname: `/question/:${question.id}`,
             state: {
               userName: userName,
               avatarUrl: avatarUrl,
               question: question,
-              questionId:question.id
+              questionId: question.id,
+            },
+          }}
+        />
+      ) : redirect && answered ? (
+        <Redirect
+          to={{
+            pathname: `/pollresults/:${question.id}`,
+            state: {
+              //  inputValue: inputValue,
+              userName: userName,
+              avatarUrl: avatarUrl,
+              question: question,
+              questionId: question.id,
             },
           }}
         />
@@ -42,7 +54,7 @@ const Question = (props) => {
                 variant="outline-info"
                 className="view-poll-button btn-block"
               >
-                Submit
+                {answered ? "View Poll" : "Submit"}
               </Button>
             </div>
           </div>

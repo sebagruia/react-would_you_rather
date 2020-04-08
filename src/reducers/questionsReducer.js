@@ -3,12 +3,10 @@ import { ADD_QUESTION } from "../actions/addQuestionAction";
 import { SAVE_ANSWER } from "../actions/saveAnswerAction";
 
 const initialQuestionState = {
-  questions: {}
+  questions: {},
 };
 
 export const questionsReducer = (state = initialQuestionState, action = {}) => {
-  console.log(action.payload);
-
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
       return { ...state, questions: action.payload };
@@ -18,17 +16,19 @@ export const questionsReducer = (state = initialQuestionState, action = {}) => {
         questions: { ...state.questions, [action.payload.id]: action.payload },
       };
     case SAVE_ANSWER:
+      const qid = action.payload.qid;
+      const answer = action.payload.answer;
       return {
         ...state,
         questions: {
           ...state.questions,
-          [action.payload.qid]: {
-            ...state.questions[action.payload.qid],
-            [action.payload.answer]: {
-              ...state.questions[action.payload.qid][action.payload.answer],
-              votes: state.questions[action.payload.qid][
-                action.payload.answer
-              ].votes.concat([action.payload.authedUser]),
+          [qid]: {
+            ...state.questions[qid],
+            [answer]: {
+              ...state.questions[qid][answer],
+              votes: state.questions[qid][answer].votes.concat([
+                action.payload.authedUser,
+              ]),
             },
           },
         },

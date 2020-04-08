@@ -9,7 +9,6 @@ const Poll = (props) => {
   //props.location.state represents the props passed via Redirect (react-router-dom) from the Question project component
   const { userName, avatarUrl, question } = props.location.state;
   const {authedUser, dispatch} = props;
-  console.log(authedUser);
 
   const [redirect, setRedirect] = useState(false);
   const [inputValue, setInputValue] = useState("");

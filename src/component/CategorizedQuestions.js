@@ -80,6 +80,7 @@ const CategorizedQuestions = props => {
                     userName={user.name}
                     avatarUrl={user.avatarURL}
                     question={question}
+                    answered={true}
                   />
                 ) : null;
               });
