@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import logo from'../utils/images/logo.png';
 import { connect } from "react-redux";
 import { setLoginUserAction } from "../actions/setLoginUserAction";
 import { logAction } from "../actions/logAction";
@@ -43,7 +44,7 @@ class LogIn extends Component {
           <Card.Img
             className="logo-img-container"
             variant="top"
-            src="../../images/logo would you rather.png"
+            src={logo}
           />
           <Form
             className="submit-form"

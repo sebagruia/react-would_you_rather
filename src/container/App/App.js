@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
   const getAvatarrUrl = () => {
     for (let user of users) {
       if (user.name === userName) {
-        return user.avatarURL;
+        return user.avatarURL.name;
       }
     }
   };
@@ -54,6 +54,7 @@ class App extends Component {
   }
 
   render() {
+    
     const {
       users,
       logIn,
@@ -65,16 +66,16 @@ class App extends Component {
     } = this.props;
     return (
       <div>
-        <Route exact path="/">
+        <Route exact path="/react-would_you_rather">
           {!logIn ? <Redirect to="/login" /> : null}
         </Route>
         <Route exact path="/login" component={LogIn} />
 
         {logIn ? (
           <Fragment>
-            <Route path="/">
+            {/* <Route path="/react-would_you_rather"> */}
               <Navigation userName={userName} avatarUrl={avatarUrl} />
-            </Route>
+            {/* </Route> */}
             <Redirect to="/questions" />
             <Switch>
               <Route path="/questions">

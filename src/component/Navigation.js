@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../utils/images/logo.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { connect } from "react-redux";
@@ -19,7 +20,7 @@ const Navigation = props => {
       <div className="container">
         <Navbar.Brand>
           <img
-            src="../../images/logo would you rather.png"
+            src={logo}
             className="d-inline-block align-top logo-image"
             width="30"
             height="30"
