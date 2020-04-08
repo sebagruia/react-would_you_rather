@@ -8,7 +8,7 @@ const UserStats = ({user}) => {
   return (
     <div className="userStats-container">
       <div className="userStats-avatar">
-        <img src={user.avatarURL} alt="avatar" />
+        <img src={user.avatarURL.name} alt="avatar" />
       </div>
       <div className="userStats-statistic">
         <div className="userStats-statistic-text">

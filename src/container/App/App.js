@@ -73,9 +73,9 @@ class App extends Component {
 
         {logIn ? (
           <Fragment>
-            {/* <Route path="/react-would_you_rather"> */}
+            <Route path="/">
               <Navigation userName={userName} avatarUrl={avatarUrl} />
-            {/* </Route> */}
+            </Route>
             <Redirect to="/questions" />
             <Switch>
               <Route path="/questions">

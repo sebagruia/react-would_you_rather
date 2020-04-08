@@ -17,8 +17,9 @@ const Poll = (props) => {
     event.preventDefault();
     if (inputValue) {
       setRedirect(true);
+      dispatch(saveAnswerAction({authedUser, qid:question.id, answer:inputValue}));
     }
-    dispatch(saveAnswerAction({authedUser, qid:question.id, answer:inputValue}));
+   
   };
 
   const handleInputChange = (event) => {
