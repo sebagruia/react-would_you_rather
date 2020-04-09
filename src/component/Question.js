@@ -28,7 +28,6 @@ const Question = (props) => {
           to={{
             pathname: `/pollresults/:${question.id}`,
             state: {
-              //  inputValue: inputValue,
               userName: userName,
               avatarUrl: avatarUrl,
               question: question,

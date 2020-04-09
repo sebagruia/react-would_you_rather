@@ -1,7 +1,6 @@
 import tylerAvatar from "../utils/avatars/tylermcginnis.png";
 import sarahAvatar from "../utils/avatars/sarahedo.png";
 import johnAvatar from "../utils/avatars/johndoe.png";
-console.log(tylerAvatar);
 
 let users = {
   sarahedo: {

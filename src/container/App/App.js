@@ -96,7 +96,7 @@ class App extends Component {
                 <Poll authedUser = {userId}/>
               </Route>
               <Route exact path={`/pollresults/:${location.state ? location.state.questionId :null}`}>
-                <PollResults />
+                <PollResults users={users} userId={userId}/>
               </Route>
             </Switch>
           </Fragment>
