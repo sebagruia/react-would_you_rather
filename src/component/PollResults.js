@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 const PollResults = (props) => {
   const { userName, avatarUrl, question } = props.location.state;
@@ -54,6 +55,13 @@ const PollResults = (props) => {
                 <h6>{`${questionOptionTwoVotes} out of ${questionOptionOneVotes + questionOptionTwoVotes} votes`}</h6>
               </div>
             </div>
+            <Button
+                type="submit"
+                variant="outline-info"
+                className="view-poll-button btn-block"
+              >
+                Back
+              </Button>
         </div>
       </div>
     </div>
