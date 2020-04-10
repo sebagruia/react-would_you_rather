@@ -11,16 +11,21 @@ const CategorizedQuestions = props => {
     (user) => user.name === userName
   );
 
+  
   const answeredQuestions = Object.values(questions).filter(
     question =>
       question.optionOne.votes.includes(selectUser[0].id) ||
       question.optionTwo.votes.includes(selectUser[0].id)
-  );
+  ).sort((a,b)=>{
+    return b.timestamp - a.timestamp;
+  });
   const unansweredQuestions = Object.values(questions).filter(
     question =>
       !question.optionOne.votes.includes(selectUser[0].id) &&
       !question.optionTwo.votes.includes(selectUser[0].id)
-  );
+  ).sort((a,b)=>{
+    return b.timestamp - a.timestamp;
+  });
   return (
     <Card className="home">
       <Card.Header>

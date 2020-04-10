@@ -8,6 +8,7 @@ import Poll from "../../component/Poll";
 import PollResults from "../../component/PollResults";
 import CreateQuestion from "../../component/CreateQuestion";
 import CategorizedQuestions from "../../component/CategorizedQuestions";
+import NoMatch404 from "../../component/NoMatch404";
 import { connect } from "react-redux";
 import { receiveUsersAction } from "../../actions/receiveUsersAction";
 import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
@@ -98,6 +99,9 @@ class App extends Component {
               <Route exact path={`/pollresults/:${location.state ? location.state.questionId :null}`}>
                 <PollResults users={users} userId={userId}/>
               </Route>
+              <Route path="*">
+            <NoMatch404 />
+          </Route>
             </Switch>
           </Fragment>
         ) : null}

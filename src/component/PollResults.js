@@ -36,70 +36,45 @@ const PollResults = (props) => {
             <div className={`pollresults-container ${answer==='optionOne' ? 'select' : null}`}>
               <div className="pollresults-question">
                 <h6>{`${question.optionOne.text}?`}</h6>
-                <h6 class={`voted-container ${answer==='optionOne' ? "" : "hidden"}`}><span class="badge badge-warning voted">Voted</span></h6>
+                <h6 className={`voted-container ${answer==='optionOne' ? "" : "hidden"}`}><span className="badge badge-warning voted">Voted</span></h6>
               </div>
               <div className="progress" style={{ height: "20px" }}>
                 <div
                   className="progress-bar"
                   role="progressbar"
                   style={{
-                    width: `${Math.round(
-                      (questionOptionOneVotes /
-                        (questionOptionOneVotes + questionOptionTwoVotes)) *
-                      100
-                    )}%`,
-                  }}
+                    width: `${Math.round((questionOptionOneVotes /(questionOptionOneVotes + questionOptionTwoVotes)) *100)}%`}}
                   aria-valuenow="25"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  {Math.round(
-                    (questionOptionOneVotes /
-                      (questionOptionOneVotes + questionOptionTwoVotes)) *
-                    100
-                  )}
-                  %
+                  {Math.round((questionOptionOneVotes / (questionOptionOneVotes + questionOptionTwoVotes)) *100)}%
                 </div>
               </div>
               <div className="votes">
-                <h6>{`${questionOptionOneVotes} out of ${
-                  questionOptionOneVotes + questionOptionTwoVotes
-                  } votes`}</h6>
+                <h6>{`${questionOptionOneVotes} out of ${questionOptionOneVotes + questionOptionTwoVotes} votes`}</h6>
               </div>
             </div>
 
             <div className={`pollresults-container ${answer==='optionTwo' ? 'select' : null}`}>
               <div className="pollresults-question">
                 <h6>{`${question.optionTwo.text}?`}</h6>
-                <h6 class={`voted-container ${answer==='optionTwo' ? "" : "hidden"}`}><span class="badge badge-warning voted">Voted</span></h6>
+                <h6 className={`voted-container ${answer==='optionTwo' ? "" : "hidden"}`}><span className="badge badge-warning voted">Voted</span></h6>
               </div>
               <div className="progress" style={{ height: "20px" }}>
                 <div
                   className="progress-bar"
                   role="progressbar"
-                  style={{
-                    width: `${Math.round(
-                      (questionOptionTwoVotes /
-                        (questionOptionOneVotes + questionOptionTwoVotes)) *
-                      100
-                    )}%`,
-                  }}
+                  style={{ width: `${Math.round((questionOptionTwoVotes / (questionOptionOneVotes + questionOptionTwoVotes)) *100)}%`}}
                   aria-valuenow="35"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 >
-                  {Math.round(
-                    (questionOptionTwoVotes /
-                      (questionOptionOneVotes + questionOptionTwoVotes)) *
-                    100
-                  )}
-                  %
+                  {Math.round((questionOptionTwoVotes /(questionOptionOneVotes + questionOptionTwoVotes)) *100)}%
                 </div>
               </div>
               <div className="votes">
-                <h6>{`${questionOptionTwoVotes} out of ${
-                  questionOptionOneVotes + questionOptionTwoVotes
-                  } votes`}</h6>
+                <h6>{`${questionOptionTwoVotes} out of ${questionOptionOneVotes + questionOptionTwoVotes} votes`}</h6>
               </div>
             </div>
             <Button
