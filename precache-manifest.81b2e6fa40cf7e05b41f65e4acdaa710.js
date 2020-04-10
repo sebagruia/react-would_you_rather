@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7f7c3a7bf61e40ab6c83b2db8d4a138d",
+    "revision": "e5d8bd33660672fed63ec243452b28c7",
     "url": "/react-would_you_rather/index.html"
   },
   {
-    "revision": "aa1c67d788fb1a9413a0",
+    "revision": "a2c3088e48a9d1173d37",
     "url": "/react-would_you_rather/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "e906c2ca676f553e4dfa",
+    "revision": "095aefd8116bb8921f29",
     "url": "/react-would_you_rather/static/css/main.82f87892.chunk.css"
   },
   {
-    "revision": "aa1c67d788fb1a9413a0",
-    "url": "/react-would_you_rather/static/js/2.2d18b52b.chunk.js"
+    "revision": "a2c3088e48a9d1173d37",
+    "url": "/react-would_you_rather/static/js/2.2ef7f80a.chunk.js"
   },
   {
     "revision": "eff3b4d7e4bb0087ce53139cd90bc880",
-    "url": "/react-would_you_rather/static/js/2.2d18b52b.chunk.js.LICENSE.txt"
+    "url": "/react-would_you_rather/static/js/2.2ef7f80a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e906c2ca676f553e4dfa",
-    "url": "/react-would_you_rather/static/js/main.9c950b08.chunk.js"
+    "revision": "095aefd8116bb8921f29",
+    "url": "/react-would_you_rather/static/js/main.2dfd8306.chunk.js"
   },
   {
     "revision": "edabadb4f6915305073b",
