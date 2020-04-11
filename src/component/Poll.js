@@ -1,11 +1,14 @@
-import React, { useState, Fragment } from "react";
+import React, { useState,Fragment } from "react";
 import { connect } from "react-redux";
 import { saveAnswerAction } from "../actions/saveAnswerAction";
+import {receiveAllQuestionsAction} from "../actions/receiveAllQuestionsAction";
 import Button from "react-bootstrap/Button";
 import { withRouter, Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
+
 const Poll = (props) => {
+  
   //props.location.state represents the props passed via Redirect (react-router-dom) from the Question project component
   const { userName, avatarUrl, question } = props.location.state;
   const {authedUser, dispatch} = props;
@@ -13,12 +16,16 @@ const Poll = (props) => {
   const [redirect, setRedirect] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+ 
+
   const redirectToPollResults = (event) => {
     event.preventDefault();
     if (inputValue) {
       setRedirect(true);
       dispatch(saveAnswerAction({authedUser, qid:question.id, answer:inputValue}));
+      dispatch(receiveAllQuestionsAction());
     }
+
    
   };
 
@@ -35,8 +42,8 @@ const Poll = (props) => {
             state: {
               userName: userName,
               avatarUrl: avatarUrl,
-              question: question,
-              questionId: question.id,
+              question:question,
+              questionId: question.id
             },
           }}
         />

@@ -6,10 +6,12 @@ const PollResults = (props) => {
   const [redirect, setRedirect] = useState(false);
 
   const { userName, avatarUrl, question } = props.location.state;
-  const{users, userId} = props;
+  const{users, userId, questions} = props;
+
+  const reRenderedQuestion = Object.values(questions).filter(renderedQuestion=>renderedQuestion.id===question.id);
   
-  const questionOptionOneVotes = question.optionOne.votes.length;
-  const questionOptionTwoVotes = question.optionTwo.votes.length;
+  const questionOptionOneVotes = reRenderedQuestion[0].optionOne.votes.length;
+  const questionOptionTwoVotes = reRenderedQuestion[0].optionTwo.votes.length;
 
   const answer = users[userId].answers[question.id];
   
@@ -18,6 +20,7 @@ const PollResults = (props) => {
     setRedirect(true);
   };
 
+  
   return (
     <Fragment>
       {

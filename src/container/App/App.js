@@ -93,11 +93,11 @@ class App extends Component {
               <Route exact path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
-              <Route exact path={`/question/:${location.state ? location.state.questionId :null}`}>
-                <Poll authedUser = {userId}/>
+              <Route exact path={`/poll/:${location.state ? location.state.questionId :null}`}>
+                <Poll authedUser = {userId} />
               </Route>
               <Route exact path={`/pollresults/:${location.state ? location.state.questionId :null}`}>
-                <PollResults users={users} userId={userId}/>
+                <PollResults users={users} userId={userId} questions={questions}/>
               </Route>
               <Route path="*">
             <NoMatch404 />

@@ -8,11 +8,11 @@ import { setLoginUserAction } from "../actions/setLoginUserAction";
 import {NavLink} from "react-router-dom";
 
 const Navigation = props => {
-  const { userName, avatarUrl } = props;
+  const { userName, avatarUrl, dispatch } = props;
 
   const onClick = () => {
-    props.dispatch(logAction(false));
-    props.dispatch(setLoginUserAction(""));
+    dispatch(logAction(false));
+    dispatch(setLoginUserAction(""));
   };
 
   return (
@@ -43,7 +43,7 @@ const Navigation = props => {
               <i className="fas fa-plus-circle"></i>
               Add question
             </NavLink>
-            <NavLink  to="/user" activeClassName="selected">
+            <NavLink  to="/questions/unanswered-questions">
               <div className="nav-link-img-container">
               <img className="user-avatar" src={avatarUrl} alt="user avatar" />
              <p>Hello, {userName}</p> 

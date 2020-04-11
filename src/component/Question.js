@@ -14,7 +14,7 @@ const Question = (props) => {
       {redirect && !answered ? (
         <Redirect
           to={{
-            pathname: `/question/:${question.id}`,
+            pathname: `/poll/:${question.id}`,
             state: {
               userName: userName,
               avatarUrl: avatarUrl,

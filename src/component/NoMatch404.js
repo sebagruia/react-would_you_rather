@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 const NoMatch404 = () => {
   let location = useLocation();
-  console.log(location.pathname)
   return (
     <div>
       <h3>
