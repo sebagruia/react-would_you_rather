@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "74c7bc67a432aa64c0c784abf7a53b40",
+    "revision": "f29a0ee7b36df9af50cbdc77230a14de",
     "url": "/react-would_you_rather/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-would_you_rather/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "c03c4f5f0be740c8812a",
+    "revision": "63d492bb209e929a8b24",
     "url": "/react-would_you_rather/static/css/main.82f87892.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-would_you_rather/static/js/2.2ef7f80a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c03c4f5f0be740c8812a",
-    "url": "/react-would_you_rather/static/js/main.6588f5b6.chunk.js"
+    "revision": "63d492bb209e929a8b24",
+    "url": "/react-would_you_rather/static/js/main.8e7a4624.chunk.js"
   },
   {
     "revision": "edabadb4f6915305073b",
