@@ -3,12 +3,17 @@ import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Question = (props) => {
-  const { userName, avatarUrl, question, answered } = props;
+  const { users, question, answered } = props;
   const [redirect, setRedirect] = useState(false);
   const redirectToPoll = (event) => {
     event.preventDefault();
     setRedirect(true);
   };
+  console.log(users);
+  const selectUser = Object.values(users).filter(
+    (user) => user.id === question.author
+  );
+  
   return (
     <Fragment>
       {redirect && !answered ? (
@@ -16,10 +21,9 @@ const Question = (props) => {
           to={{
             pathname: `/poll/:${question.id}`,
             state: {
-              userName: userName,
-              avatarUrl: avatarUrl,
-              question: question,
-              questionId: question.id,
+              userName: selectUser[0].name,
+              avatarUrl: selectUser[0].avatarURL.name,
+              question: question
             },
           }}
         />
@@ -28,22 +32,21 @@ const Question = (props) => {
           to={{
             pathname: `/pollresults/:${question.id}`,
             state: {
-              userName: userName,
-              avatarUrl: avatarUrl,
-              question: question,
-              questionId: question.id,
+              userName: selectUser[0].name,
+              avatarUrl: selectUser[0].avatarURL.name,
+              question: question
             },
           }}
         />
       ) : (
         <div className="user">
           <div className="user-name">
-            <h5>{userName} asks:</h5>
+            <h5>{selectUser[0].name} asks:</h5>
           </div>
 
           <div className="user-info-container">
             <div className="image-container align-middle">
-              <img src={avatarUrl} alt="avatar" />
+              <img src={selectUser[0].avatarURL.name} alt="avatar" />
             </div>
             <div className="question-container">
               <h5>Would you rather</h5>

@@ -4,28 +4,32 @@ import Nav from "react-bootstrap/Nav";
 import { Route, NavLink } from "react-router-dom";
 import Question from "../component/Question";
 
-
-const CategorizedQuestions = props => {
+const CategorizedQuestions = (props) => {
   const { users, questions, userName } = props;
   const selectUser = Object.values(users).filter(
     (user) => user.name === userName
   );
 
-  
-  const answeredQuestions = Object.values(questions).filter(
-    question =>
-      question.optionOne.votes.includes(selectUser[0].id) ||
-      question.optionTwo.votes.includes(selectUser[0].id)
-  ).sort((a,b)=>{
-    return b.timestamp - a.timestamp;
-  });
-  const unansweredQuestions = Object.values(questions).filter(
-    question =>
-      !question.optionOne.votes.includes(selectUser[0].id) &&
-      !question.optionTwo.votes.includes(selectUser[0].id)
-  ).sort((a,b)=>{
-    return b.timestamp - a.timestamp;
-  });
+  const answeredQuestions = Object.values(questions)
+    .filter(
+      (question) =>
+        question.optionOne.votes.includes(selectUser[0].id) ||
+        question.optionTwo.votes.includes(selectUser[0].id)
+    )
+    .sort((a, b) => {
+      return b.timestamp - a.timestamp;
+    });
+
+  const unansweredQuestions = Object.values(questions)
+    .filter(
+      (question) =>
+        !question.optionOne.votes.includes(selectUser[0].id) &&
+        !question.optionTwo.votes.includes(selectUser[0].id)
+    )
+    .sort((a, b) => {
+      return b.timestamp - a.timestamp;
+    });
+
   return (
     <Card className="home">
       <Card.Header>
@@ -60,37 +64,23 @@ const CategorizedQuestions = props => {
           exact
           path="/questions/unanswered-questions"
           render={() => {
-            return Object.values(users).map(user => {
-              return unansweredQuestions.map(question => {
-                return user.id === question.author ? (
-                  <Question
-                    key={question.id}
-                    userName={user.name}
-                    avatarUrl={user.avatarURL.name}
-                    question={question}
-                  />
-                ) : null;
-              });
-            });
+            return unansweredQuestions.map((question) => (
+              <Question key={question.id} users={users} question={question} />
+            ));
           }}
         />
         <Route
           exact
           path="/questions/answered-questions"
           render={() => {
-            return Object.values(users).map(user => {
-              return answeredQuestions.map(question => {
-                return user.id === question.author ? (
-                  <Question
-                    key={question.id}
-                    userName={user.name}
-                    avatarUrl={user.avatarURL.name}
-                    question={question}
-                    answered={true}
-                  />
-                ) : null;
-              });
-            });
+            return answeredQuestions.map((question) => (
+              <Question
+                key={question.id}
+                users={users}
+                question={question}
+                answered={true}
+              />
+            ));
           }}
         />
       </Card.Body>
