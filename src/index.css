@@ -14,7 +14,7 @@ code {
 }
 
 .hidden {
-  display: none!important;
+  display: none !important;
 }
 
 .selected {
@@ -394,4 +394,60 @@ a:hover {
 }
 .createQuestion-form .form-group {
   margin: 1.2rem 0;
+}
+
+/* ====Media Queries=== */
+
+@media screen and (max-width: 576px) {
+  .logIn-form {
+    width: 90%;
+    transform: translateY(calc(30%));
+    -webkit-transform: translateY(calc(30%));
+    -moz-transform: translateY(calc(30%));
+    -ms-transform: translateY(calc(30%));
+    -o-transform: translateY(calc(30%));
+  }
+  .navbar-nav {
+    align-items: flex-start;
+  }
+  .navbar-nav > a {
+    margin-top: 10px;
+  }
+  .card-title h5 {
+    font-size: 1.1rem;
+  }
+
+  .user {
+    width: 100%;
+  }
+  .poll {
+    width: 90%;
+  }
+  .question-container h5 {
+    font-size: 1.1rem;
+  }
+  .createQuestion {
+    width: 90%;
+  }
+  .userStats-container {
+    width: 90%;
+  }
+  .userStats-statistic-text h5 {
+    font-size: 1.2rem;
+  }
+  .userStats-statistic-text h6 {
+    font-size: 0.8rem;
+  }
+  .userStats-statistic {
+    height: 100px;
+    margin-left: 10px;
+    padding-right: 11px;
+  }
+  .userStats-avatar {
+    padding: 3px;
+    margin-left: 0px;
+  }
+  .userStats-score {
+    margin: 6px 5px 0 5px;
+  }
 }
