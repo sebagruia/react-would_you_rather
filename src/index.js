@@ -9,6 +9,7 @@ import { usersReducer } from "./reducers/usersReducer";
 import { chooseLoginReducer } from "./reducers/chooseLoginUserReducer";
 import { questionsReducer } from "./reducers/questionsReducer";
 import { logReducer } from "./reducers/logReducer";
+import { loadingBarReducer } from 'react-redux-loading-bar';
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./container/App/App";
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   usersReducer,
   chooseLoginReducer,
   questionsReducer,
-  logReducer
+  logReducer,
+  loadingBar: loadingBarReducer
 });
 //The code below is just for enabling Chrome Redux DEvTools=============
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
