@@ -26,6 +26,7 @@ const CreateQuestion = props => {
     setRedirect(true);
   };
 
+  // When the "Submit" button is clicked the new created question is added to the "fake" database using the "addQuestion" action
   const onSubmitNewQuestion = event => {
     event.preventDefault();
     if (optionOneText !== "" && optionTwoText !== "") {

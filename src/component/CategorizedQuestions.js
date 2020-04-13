@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import { Route, NavLink } from "react-router-dom";
@@ -10,6 +10,7 @@ const CategorizedQuestions = (props) => {
     (user) => user.name === userName
   );
 
+  // Questions are put in 2 categories: "answeredQuestions" and "unansweredQuestions" and are sorted in descending order
   const answeredQuestions = Object.values(questions)
     .filter(
       (question) =>
@@ -31,60 +32,65 @@ const CategorizedQuestions = (props) => {
     });
 
   return (
-    <Card className="home">
-      <Card.Header>
-        <Nav
-          variant="tabs"
-          defaultActiveKey="#first"
-          className="home-links-container"
-        >
-          <Nav.Item>
-            <NavLink
-              to="/questions/unanswered-questions"
-              className="nav-link"
-              activeClassName="active"
-            >
-              Unanswered Questions
-            </NavLink>
-          </Nav.Item>
+    <Fragment>
+      <Card className="home">
+        <Card.Header>
+          <Nav
+            variant="tabs"
+            defaultActiveKey="#first"
+            className="home-links-container"
+          >
+            <Nav.Item>
+              <NavLink
+                to="/questions/unanswered-questions"
+                className="nav-link"
+                activeClassName="active"
+              >
+                Unanswered Questions
+              </NavLink>
+            </Nav.Item>
 
-          <Nav.Item>
-            <NavLink
-              to="/questions/answered-questions"
-              className="nav-link"
-              activeClassName="active"
-            >
-              Answered Questions
-            </NavLink>
-          </Nav.Item>
-        </Nav>
-      </Card.Header>
-      <Card.Body>
-        <Route
-          exact
-          path="/questions/unanswered-questions"
-          render={() => {
-            return unansweredQuestions.map((question) => (
-              <Question key={question.id} users={users} question={question} />
-            ));
-          }}
-        />
-        <Route
-          exact
-          path="/questions/answered-questions"
-          render={() => {
-            return answeredQuestions.map((question) => (
-              <Question
+            <Nav.Item>
+              <NavLink
+                to="/questions/answered-questions"
+                className="nav-link"
+                activeClassName="active"
+              >
+                Answered Questions
+              </NavLink>
+            </Nav.Item>
+          </Nav>
+        </Card.Header>
+        <Card.Body>
+          <Route
+            exact
+            path="/questions/unanswered-questions"
+            render={() => {
+              return unansweredQuestions.map((question) => (
+                <Question 
                 key={question.id}
                 users={users}
-                question={question}
-                answered={true}
-              />
-            ));
-          }}
-        />
-      </Card.Body>
-    </Card>
+                question={question} />
+              ));
+            }}
+          />
+          <Route
+            exact
+            path="/questions/answered-questions"
+            render={() => {
+              return answeredQuestions.map((question) => (
+                <Question
+                  key={question.id}
+                  users={users}
+                  question={question}
+                  answered={true}
+                />
+              ));
+            }}
+          />
+        </Card.Body>
+      </Card>
+    </Fragment>
   );
 };
 export default CategorizedQuestions;

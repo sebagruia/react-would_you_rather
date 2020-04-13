@@ -14,7 +14,7 @@ const PollResults = (props) => {
   const questionOptionTwoVotes = reRenderedQuestion[0].optionTwo.votes.length;
 
   const answer = users[userId].answers[question.id];
-
+// Calculation of votes for optionOne and optionTwo in percentages
   const percentageOptionOne = Math.round((questionOptionOneVotes /(questionOptionOneVotes + questionOptionTwoVotes)) *100);
   const percentageOptionTwo = Math.round((questionOptionTwoVotes /(questionOptionOneVotes + questionOptionTwoVotes)) *100);
   

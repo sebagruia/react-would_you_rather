@@ -9,13 +9,13 @@ const Question = (props) => {
     event.preventDefault();
     setRedirect(true);
   };
-  console.log(users);
   const selectUser = Object.values(users).filter(
     (user) => user.id === question.author
   );
   
   return (
     <Fragment>
+      {/* If "redirect" variable is "true" and the "answered" prop was not passed from parent then the page is redirected to "Poll" page */}
       {redirect && !answered ? (
         <Redirect
           to={{
@@ -27,6 +27,7 @@ const Question = (props) => {
             },
           }}
         />
+      /* If "redirect" variable is "true" and the "answered" prop was passed from parent then the page is redirected to "PollResults" page */
       ) : redirect && answered ? (
         <Redirect
           to={{

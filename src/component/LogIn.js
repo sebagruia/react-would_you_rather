@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import LoadingBar from "react-redux-loading-bar";
 import logo from "../utils/images/logo.png";
 import { connect } from "react-redux";
 import { setLoginUserAction } from "../actions/setLoginUserAction";
@@ -18,12 +17,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // The user is selected using the "setLoginUserAction" action
     onLoginChange: (event) => {
       event.preventDefault();
       if (event.target.value !== "Select User" && event.target.value !== "") {
         dispatch(setLoginUserAction(event.target.value));
       }
     },
+    //On submiting the form the "loginField" value is set to "True"
     onSubmitUser: (event) => {
       event.preventDefault();
       dispatch(logAction(true));
@@ -37,8 +38,6 @@ class LogIn extends Component {
 
     return (
       <Fragment>
-        <LoadingBar />
-
         <Card className="logIn-form m-auto">
           <Card.Title className="card-title">
             <h5>Welcome to the Would You Rather App!</h5>

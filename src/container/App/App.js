@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import LoadingBar from "react-redux-loading-bar";
 import LogIn from "../../component/LogIn";
 import Navigation from "../../component/Navigation";
 import Leaderbord from "../../component/Leaderboard";
@@ -55,7 +56,6 @@ class App extends Component {
   }
 
   render() {
-    
     const {
       users,
       logIn,
@@ -63,15 +63,18 @@ class App extends Component {
       questions,
       avatarUrl,
       userId,
-      location
+      location,
     } = this.props;
+
     return (
       <div>
+        <LoadingBar />
+        {/* If the user is not Loged In The App is redirected to "LogIn" page */}
         <Route exact path="/react-would_you_rather">
           {!logIn ? <Redirect to="/login" /> : null}
         </Route>
         <Route exact path="/login" component={LogIn} />
-
+        {/* If the user is Loged In The App is redirected to "questions" page*/}
         {logIn ? (
           <Fragment>
             <Route path="/">
@@ -93,15 +96,19 @@ class App extends Component {
               <Route exact path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
-              <Route exact path={`/poll/:${location.state ? location.state.questionId :null}`}>
-                <Poll authedUser = {userId} />
+              <Route exact path={`/poll/:${location.state ? location.state.questionId : null}`}>
+                <Poll authedUser={userId} />
               </Route>
-              <Route exact path={`/pollresults/:${location.state ? location.state.questionId :null}`}>
-                <PollResults users={users} userId={userId} questions={questions}/>
+              <Route exact path={`/pollresults/:${location.state ? location.state.questionId : null}`}>
+                <PollResults
+                  users={users}
+                  userId={userId}
+                  questions={questions}
+                />
               </Route>
               <Route path="*">
-            <NoMatch404 />
-          </Route>
+                <NoMatch404 />
+              </Route>
             </Switch>
           </Fragment>
         ) : null}
