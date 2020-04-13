@@ -6,16 +6,40 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Descriptions
 
-The "Would You Rather?" Project is a web app that lets a user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
+The "Would You Rather?" Project is a web app that lets the user play the “Would You Rather?” game. The game goes like this: A user is asked a question in the form: “Would you rather [option A] or [option B] ?”. Answering "neither" or "both" is against the rules.
 
 The users will be able to answer questions, see which questions they haven’t answered, see how other people have voted, post questions, and see the ranking of users on the leaderboard.
+
+To see the App content you need to choose from one of the users in the Log In form, that are allready created for you.
+Once the user logs in, the user should be able to toggle between his/her answered and unanswered polls on the home page, which is located at the root. The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom). The unanswered questions are shown by default, and the name of the logged in user is be visible on the page.
+
+When a poll is clicked on the home page, the following is shown:
+
+1.Text “Would You Rather”;
+2.Avatar of the user who posted the polling question; and
+3.Two options.
+For answered polls, each of the two options contains the following:
+
+1.Text of the option;
+2.Number of people who voted for that option; and
+3.Percentage of people who voted for that option.
+
+Users can only vote once per poll.
+
+The application has a leaderboard that’s available at the /leaderboard. Each entry on the leaderboard contains the following:
+
+User’s name;
+User’s picture;
+Number of questions the user asked; and
+Number of questions the user answered
+
+Users are ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered. The more questions you ask and answer, the higher up you move.
+
+
 
 ## Technologies used
 For the "state" management in this project I've used REDUX.
 
-## Project curent state
-
-UNDER CONSTRUCTION
 
 ## Available Scripts
 
