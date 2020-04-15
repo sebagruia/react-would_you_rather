@@ -90,16 +90,16 @@ class App extends Component {
                   questions={questions}
                 />
               </Route>
-              <Route exact path="/leaderbord">
+              <Route path="/leaderbord">
                 <Leaderbord users={users} />
               </Route>
-              <Route exact path="/add-question">
+              <Route path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
-              <Route exact path={`/poll/:${location.state ? location.state.questionId : null}`}>
+              <Route path={`/poll/:${location.state ? location.state.questionId : null}`}>
                 <Poll authedUser={userId} />
               </Route>
-              <Route exact path={`/pollresults/:${location.state ? location.state.questionId : null}`}>
+              <Route path={`/pollresults/:${location.state ? location.state.questionId : null}`}>
                 <PollResults
                   users={users}
                   userId={userId}
