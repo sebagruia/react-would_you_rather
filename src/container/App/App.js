@@ -62,24 +62,19 @@ class App extends Component {
       userName,
       questions,
       avatarUrl,
-      userId,
-      location,
+      userId
     } = this.props;
 
     return (
       <div>
         <LoadingBar />
         {/* If the user is not Loged In The App is redirected to "LogIn" page */}
-        <Route exact path="/react-would_you_rather">
           {!logIn ? <Redirect to="/login" /> : null}
-        </Route>
         <Route exact path="/login" component={LogIn} />
         {/* If the user is Loged In The App is redirected to "questions" page*/}
         {logIn ? (
           <Fragment>
-            <Route path="/">
               <Navigation userName={userName} avatarUrl={avatarUrl} />
-            </Route>
             <Redirect to="/questions" />
             <Switch>
               <Route path="/questions">
@@ -96,10 +91,10 @@ class App extends Component {
               <Route path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
-              <Route path={`/poll/:${location.state ? location.state.questionId : null}`}>
+              <Route path="/poll/:id">
                 <Poll authedUser={userId} />
               </Route>
-              <Route path={`/pollresults/:${location.state ? location.state.questionId : null}`}>
+              <Route path="/pollresults/:id">
                 <PollResults
                   users={users}
                   userId={userId}

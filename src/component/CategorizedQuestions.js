@@ -63,7 +63,7 @@ const CategorizedQuestions = (props) => {
         </Card.Header>
         <Card.Body>
           <Route
-            exact
+          exact
             path="/questions/unanswered-questions"
             render={() => {
               return unansweredQuestions.map((question) => (
@@ -75,7 +75,7 @@ const CategorizedQuestions = (props) => {
             }}
           />
           <Route
-            exact
+          exact
             path="/questions/answered-questions"
             render={() => {
               return answeredQuestions.map((question) => (

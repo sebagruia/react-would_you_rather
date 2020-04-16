@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 const Poll = (props) => {
 
   //props.location.state represents the props passed via Redirect (react-router-dom) from the Question project component
+  console.log(props);
   const { userName, avatarUrl, question } = props.location.state;
   const { authedUser, dispatch } = props;
 
