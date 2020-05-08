@@ -1,4 +1,4 @@
-import { _getUsers } from "../DATA/_DATA";
+import { _getUsers } from '../../../DATA/_DATA';
 import {showLoading, hideLoading} from 'react-redux-loading';
 export const RECEIVE_USERS = "RECEIVE_USERS";
 

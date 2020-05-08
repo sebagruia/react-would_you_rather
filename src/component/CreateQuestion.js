@@ -1,25 +1,25 @@
 import React from "react";
 import { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { addQuestion } from "../actions/addQuestionAction";
+import { addQuestion } from "../redux/actions/questions/addQuestionAction";
+import { setOptionOne } from "../redux/actions/questions/setOptionOneText.Action";
+import { setOptionTwo } from "../redux/actions/questions/setOptionTwoText.Action";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router-dom";
 
-const CreateQuestion = props => {
-  const { dispatch, userId } = props;
+const CreateQuestion = (props) => {
+  const { dispatch, userId, optionOneText, optionTwoText } = props;
   const author = userId;
 
-  const [optionOneText, setOptionOneText] = useState("");
-  const [optionTwoText, setOptionTwoText] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  const getOptionOneText = text => {
-    setOptionOneText(text);
+  const getOptionOneText = (text) => {
+    dispatch(setOptionOne(text));
   };
-  const getOptionTwoText = text => {
-    setOptionTwoText(text);
+  const getOptionTwoText = (text) => {
+    dispatch(setOptionTwo(text));
   };
 
   const redirectForm = () => {
@@ -27,7 +27,7 @@ const CreateQuestion = props => {
   };
 
   // When the "Submit" button is clicked the new created question is added to the "fake" database using the "addQuestion" action
-  const onSubmitNewQuestion = event => {
+  const onSubmitNewQuestion = (event) => {
     event.preventDefault();
     if (optionOneText !== "" && optionTwoText !== "") {
       dispatch(addQuestion({ optionOneText, optionTwoText, author }));
@@ -53,7 +53,7 @@ const CreateQuestion = props => {
               <h5>Would you rather...</h5>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
-                  onChange={event => getOptionOneText(event.target.value)}
+                  onChange={(event) => getOptionOneText(event.target.value)}
                   type="text"
                   placeholder="Enter Question One Here"
                 />
@@ -61,7 +61,7 @@ const CreateQuestion = props => {
               <hr></hr>
               <Form.Group controlId="formBasicPassword">
                 <Form.Control
-                  onChange={event => getOptionTwoText(event.target.value)}
+                  onChange={(event) => getOptionTwoText(event.target.value)}
                   type="text"
                   placeholder="Enter Question Two One Here"
                 />
@@ -76,5 +76,12 @@ const CreateQuestion = props => {
     </Fragment>
   );
 };
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    optionOneText: state.setOptionsReducer.optionOneText,
+    optionTwoText: state.setOptionsReducer.optionTwoText,
+  };
+};
 
-export default connect()(CreateQuestion);
+export default connect(mapStateToProps)(CreateQuestion);

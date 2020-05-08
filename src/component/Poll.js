@@ -1,30 +1,29 @@
 import React, { useState, Fragment } from "react";
-import { connect } from "react-redux";
-import { saveAnswerAction } from "../actions/saveAnswerAction";
-import { receiveAllQuestionsAction } from "../actions/receiveAllQuestionsAction";
+import { withRouter, Redirect} from "react-router-dom";
+import {connect} from "react-redux";
+import { saveAnswerAction } from "../redux/actions/questions/saveAnswerAction";
+import { receiveAllQuestionsAction } from "../redux/actions/questions/receiveAllQuestionsAction";
 import Button from "react-bootstrap/Button";
-import { withRouter, Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 
 
-const Poll = (props) => {
 
-  //props.location.state represents the props passed via Redirect (react-router-dom) from the Question project component
-  console.log(props);
+const Poll = (props) => {
   const { userName, avatarUrl, question } = props.location.state;
   const { authedUser, dispatch } = props;
 
   const [redirect, setRedirect] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-
   // When this function is run, it sets the "redirect" variable to "true", saves the newly created question to the "fake" database using "saveAnswerAction" action and rerenders the questions from database using the "receiveAllQuestionsAction" action
   const redirectToPollResults = (event) => {
     event.preventDefault();
     if (inputValue) {
-      setRedirect(true);
-      dispatch(saveAnswerAction({ authedUser, qid: question.id, answer: inputValue }));
+      dispatch(
+        saveAnswerAction({ authedUser, qid: question.id, answer: inputValue })
+      );
       dispatch(receiveAllQuestionsAction());
+      setRedirect(true);
     }
   };
 
@@ -34,71 +33,71 @@ const Poll = (props) => {
 
   return (
     <Fragment>
-      {redirect ? (
-        <Redirect
-          to={{
-            pathname: `/pollresults/:${question.id}`,
-            state: {
-              userName: userName,
-              avatarUrl: avatarUrl,
-              question: question,
-              questionId: question.id
-            },
-          }}
-        />
-      ) : (
-          <div className="user poll">
-            <div className="user-name">
-              <h5>{userName} asks:</h5>
+    {redirect ? (
+      <Redirect
+        to={{
+          pathname: `/pollresults/${question.id}`,
+          state: {
+            userName: userName,
+            avatarUrl: avatarUrl,
+            question: question,
+            questionId: question.id
+          },
+        }}
+      />
+    ) : (
+        <div className="user poll">
+          <div className="user-name">
+            <h5>{userName} asks:</h5>
+          </div>
+          <div className="user-info-container-poll">
+            <div className="image-container poll-image-container align-middle">
+              <img src={avatarUrl} alt="avatar" />
             </div>
-            <div className="user-info-container-poll">
-              <div className="image-container poll-image-container align-middle">
-                <img src={avatarUrl} alt="avatar" />
+
+            <Form
+              onSubmit={redirectToPollResults}
+              className="question-container"
+            >
+              <h5>Would you rather...</h5>
+              <div className="poll-first-question-container">
+                <div className="input-container">
+                  <Form.Check
+                    onChange={handleInputChange}
+                    type="radio"
+                    label={question.optionOne.text}
+                    name="selection"
+                    id="first-question-checkbox"
+                    value="optionOne"
+                  />
+                </div>
               </div>
 
-              <Form
-                onSubmit={redirectToPollResults}
-                className="question-container"
+              <div className="poll-second-question-container">
+                <div className="input-container">
+                  <Form.Check
+                    onChange={handleInputChange}
+                    type="radio"
+                    label={question.optionTwo.text}
+                    name="selection"
+                    id="second-question-checkbox"
+                    value="optionTwo"
+                  />
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                variant="outline-info"
+                className="view-poll-button btn-block"
               >
-                <h5>Would you rather...</h5>
-                <div className="poll-first-question-container">
-                  <div className="input-container">
-                    <Form.Check
-                      onChange={handleInputChange}
-                      type="radio"
-                      label={question.optionOne.text}
-                      name="selection"
-                      id="first-question-checkbox"
-                      value="optionOne"
-                    />
-                  </div>
-                </div>
-
-                <div className="poll-second-question-container">
-                  <div className="input-container">
-                    <Form.Check
-                      onChange={handleInputChange}
-                      type="radio"
-                      label={question.optionTwo.text}
-                      name="selection"
-                      id="second-question-checkbox"
-                      value="optionTwo"
-                    />
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="outline-info"
-                  className="view-poll-button btn-block"
-                >
-                  Vote
-              </Button>
-              </Form>
-            </div>
+                Vote
+            </Button>
+            </Form>
           </div>
-        )}
-    </Fragment>
+        </div>
+      )}
+  </Fragment>
   );
 };
 

@@ -1,6 +1,6 @@
-import { RECEIVE_ALL_QUESTIONS } from "../actions/receiveAllQuestionsAction";
-import { ADD_QUESTION } from "../actions/addQuestionAction";
-import { SAVE_ANSWER } from "../actions/saveAnswerAction";
+import { RECEIVE_ALL_QUESTIONS } from "../../actions/questions/receiveAllQuestionsAction";
+import { ADD_QUESTION } from "../../actions/questions/addQuestionAction";
+import { SAVE_ANSWER } from "../../actions/questions/saveAnswerAction";
 
 const initialQuestionState = {
   questions: {},
@@ -33,7 +33,6 @@ export const questionsReducer = (state = initialQuestionState, action = {}) => {
           },
         },
       };
-
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { SET_LOGIN_USER } from '../actions/setLoginUserAction';
+import { SET_LOGIN_USER } from '../../actions/users/setLoginUserAction';
 
 const initialStateLogin = {
     loginField: ''

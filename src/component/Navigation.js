@@ -3,8 +3,8 @@ import logo from "../utils/images/logo.png";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { connect } from "react-redux";
-import { logAction } from "../actions/logAction";
-import { setLoginUserAction } from "../actions/setLoginUserAction";
+import { logAction } from "../redux/actions/users/logAction";
+import { setLoginUserAction } from "../redux/actions/users/setLoginUserAction";
 import {NavLink} from "react-router-dom";
 
 const Navigation = props => {

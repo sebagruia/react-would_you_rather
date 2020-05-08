@@ -1,38 +1,21 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import { Provider } from "react-redux";
-import { BrowserRouter} from "react-router-dom";
-import thunkMiddleware from "redux-thunk";
-import logger from "./middleware/logger";
-import { usersReducer } from "./reducers/usersReducer";
-import { chooseLoginReducer } from "./reducers/chooseLoginUserReducer";
-import { questionsReducer } from "./reducers/questionsReducer";
-import { logReducer } from "./reducers/logReducer";
-import { loadingBarReducer } from 'react-redux-loading-bar';
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./container/App/App";
-import * as serviceWorker from "./serviceWorker";
 
-const rootReducer = combineReducers({
-  usersReducer,
-  chooseLoginReducer,
-  questionsReducer,
-  logReducer,
-  loadingBar: loadingBarReducer
-});
-//The code below is just for enabling Chrome Redux DEvTools=============
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//The "store" const bellow has the composeEnhancers function as paramter because I wanted to use Chrome Redux DEvTools, the app works without it just fine
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunkMiddleware, logger))
-);
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
+import { BrowserRouter} from "react-router-dom";
+import ReactDOM from "react-dom";
+
+
+import App from "./container/App/App";
+import "./index.css";
+
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter >
+    <BrowserRouter>
         <App />
     </BrowserRouter>
   </Provider>,

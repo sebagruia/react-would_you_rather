@@ -1,4 +1,4 @@
-import {_getQuestions} from '../DATA/_DATA';
+import {_getQuestions} from '../../../DATA/_DATA';
 import {showLoading, hideLoading} from 'react-redux-loading';
 export const RECEIVE_ALL_QUESTIONS = 'RECEIVE_ALL_QUESTIONS';
 

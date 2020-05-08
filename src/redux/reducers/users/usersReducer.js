@@ -1,9 +1,10 @@
-import { RECEIVE_USERS } from "../actions/receiveUsersAction";
-import { ADD_QUESTION } from "../actions/addQuestionAction";
-import { SAVE_ANSWER } from "../actions/saveAnswerAction";
+import { RECEIVE_USERS } from "../../actions/users/receiveUsersAction";
+import { ADD_QUESTION } from "../../actions/questions/addQuestionAction";
+import { SAVE_ANSWER } from "../../actions/questions/saveAnswerAction";
+
 
 const initialStateUsers = {
-  users: {},
+  users: {}
 };
 
 export const usersReducer = (state = initialStateUsers, action = {}) => {

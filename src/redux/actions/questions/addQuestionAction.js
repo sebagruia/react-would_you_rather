@@ -1,4 +1,4 @@
-import  {_saveQuestion} from  '../DATA/_DATA';
+import  {_saveQuestion} from  '../../../DATA/_DATA';
 export const ADD_QUESTION = "ADD_QUESTION";
 
 

@@ -1,25 +1,28 @@
-import React, { useState, Fragment } from "react";
-import { Redirect } from "react-router-dom";
+import React, {Fragment, useState } from "react";
+import { Redirect, withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Question = (props) => {
   const { users, question, answered } = props;
+
   const [redirect, setRedirect] = useState(false);
+
   const redirectToPoll = (event) => {
     event.preventDefault();
     setRedirect(true);
   };
+
   const selectUser = Object.values(users).filter(
     (user) => user.id === question.author
   );
-  
+
   return (
     <Fragment>
       {/* If "redirect" variable is "true" and the "answered" prop was not passed from parent then the page is redirected to "Poll" page */}
       {redirect && !answered ? (
         <Redirect
           to={{
-            pathname: `/poll/:${question.id}`,
+            pathname: `/poll/${question.id}`,
             state: {
               userName: selectUser[0].name,
               avatarUrl: selectUser[0].avatarURL.name,
@@ -31,7 +34,7 @@ const Question = (props) => {
       ) : redirect && answered ? (
         <Redirect
           to={{
-            pathname: `/pollresults/:${question.id}`,
+            pathname: `/pollresults/${question.id}`,
             state: {
               userName: selectUser[0].name,
               avatarUrl: selectUser[0].avatarURL.name,
@@ -67,4 +70,4 @@ const Question = (props) => {
   );
 };
 
-export default Question;
+export default withRouter(Question);

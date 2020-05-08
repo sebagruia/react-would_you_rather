@@ -1,36 +1,13 @@
 import React, { Component, Fragment } from "react";
 import logo from "../utils/images/logo.png";
 import { connect } from "react-redux";
-import { setLoginUserAction } from "../actions/setLoginUserAction";
-import { logAction } from "../actions/logAction";
+import { setLoginUserAction } from "../redux/actions/users/setLoginUserAction";
+import { logAction } from "../redux/actions/users/logAction";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const mapStateToProps = (state) => {
-  return {
-    users: state.usersReducer.users,
-    loginField: state.chooseLoginReducer.loginField,
-    logIn: state.logReducer.logIn,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // The user is selected using the "setLoginUserAction" action
-    onLoginChange: (event) => {
-      event.preventDefault();
-      if (event.target.value !== "Select User" && event.target.value !== "") {
-        dispatch(setLoginUserAction(event.target.value));
-      }
-    },
-    //On submiting the form the "loginField" value is set to "True"
-    onSubmitUser: (event) => {
-      event.preventDefault();
-      dispatch(logAction(true));
-    },
-  };
-};
 
 class LogIn extends Component {
   render() {
@@ -75,5 +52,29 @@ class LogIn extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loginField: state.chooseLoginReducer.loginField,
+    logIn: state.logReducer.logIn,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // The user is selected using the "setLoginUserAction" action
+    onLoginChange: (event) => {
+      event.preventDefault();
+      if (event.target.value !== "Select User" && event.target.value !== "") {
+        dispatch(setLoginUserAction(event.target.value));
+      }
+    },
+    //On submiting the form the "loginField" value is set to "True"
+    onSubmitUser: (event) => {
+      event.preventDefault();
+      dispatch(logAction(true));
+    },
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

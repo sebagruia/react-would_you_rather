@@ -3,9 +3,10 @@ import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import { Route, NavLink } from "react-router-dom";
 import Question from "../component/Question";
+ 
 
 const CategorizedQuestions = (props) => {
-  const { users, questions, userName } = props;
+  const {users, questions, userName } = props;
   const selectUser = Object.values(users).filter(
     (user) => user.name === userName
   );

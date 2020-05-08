@@ -11,43 +11,9 @@ import CreateQuestion from "../../component/CreateQuestion";
 import CategorizedQuestions from "../../component/CategorizedQuestions";
 import NoMatch404 from "../../component/NoMatch404";
 import { connect } from "react-redux";
-import { receiveUsersAction } from "../../actions/receiveUsersAction";
-import { receiveAllQuestionsAction } from "../../actions/receiveAllQuestionsAction";
+import { receiveUsersAction } from "../../redux/actions/users/receiveUsersAction";
+import { receiveAllQuestionsAction } from "../../redux/actions/questions/receiveAllQuestionsAction";
 
-const mapStateToProps = (state) => {
-  const users = Object.values(state.usersReducer.users);
-  const userName = state.chooseLoginReducer.loginField;
-  const getAvatarrUrl = () => {
-    for (let user of users) {
-      if (user.name === userName) {
-        return user.avatarURL.name;
-      }
-    }
-  };
-  const getUserId = () => {
-    for (let user of users) {
-      if (user.name === userName) {
-        return user.id;
-      }
-    }
-  };
-
-  return {
-    users: state.usersReducer.users,
-    questions: state.questionsReducer.questions,
-    logIn: state.logReducer.logIn,
-    userName: state.chooseLoginReducer.loginField,
-    avatarUrl: getAvatarrUrl(),
-    userId: getUserId(),
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    retreiveUsers: () => dispatch(receiveUsersAction()),
-    retreiveQuestions: () => dispatch(receiveAllQuestionsAction()),
-  };
-};
 
 class App extends Component {
   componentDidMount() {
@@ -65,30 +31,36 @@ class App extends Component {
       userId
     } = this.props;
 
+
     return (
       <div>
         <LoadingBar />
         {/* If the user is not Loged In The App is redirected to "LogIn" page */}
           {!logIn ? <Redirect to="/login" /> : null}
-        <Route exact path="/login" component={LogIn} />
+        <Route exact path="/login">
+          <LogIn users={users}/>
+        </Route>
         {/* If the user is Loged In The App is redirected to "questions" page*/}
         {logIn ? (
           <Fragment>
-              <Navigation userName={userName} avatarUrl={avatarUrl} />
-            <Redirect to="/questions" />
+            <Route path="/">
+            <Navigation userName={userName} avatarUrl={avatarUrl} />
+            </Route>
+              
+            <Redirect to="/questions"/>
             <Switch>
               <Route path="/questions">
-                <Redirect to="/questions/unanswered-questions" />
+              <Redirect to="/questions/unanswered-questions"/>
                 <CategorizedQuestions
                   users={users}
                   userName={userName}
                   questions={questions}
                 />
               </Route>
-              <Route path="/leaderbord">
+              <Route exact path="/leaderbord">
                 <Leaderbord users={users} />
               </Route>
-              <Route path="/add-question">
+              <Route exact path="/add-question">
                 <CreateQuestion userId={userId} />
               </Route>
               <Route path="/poll/:id">
@@ -111,5 +83,40 @@ class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const users = Object.values(state.usersReducer.users);
+  const userName = state.chooseLoginReducer.loginField;
+  const getAvatarUrl = () => {
+    for (let user of users) {
+      if (user.name === userName) {
+        return user.avatarURL.name;
+      }
+    }
+  };
+  const getUserId = () => {
+    for (let user of users) {
+      if (user.name === userName) {
+        return user.id;
+      }
+    }
+  };
+
+  return {
+    users: state.usersReducer.users,
+    questions: state.questionsReducer.questions,
+    logIn: state.logReducer.logIn,
+    userName: state.chooseLoginReducer.loginField,
+    avatarUrl: getAvatarUrl(),
+    userId: getUserId(),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    retreiveUsers: () => dispatch(receiveUsersAction()),
+    retreiveQuestions: () => dispatch(receiveAllQuestionsAction()),
+  };
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

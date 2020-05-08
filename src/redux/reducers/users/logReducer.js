@@ -1,4 +1,4 @@
-import { LOGED_IN_OR_OUT } from "../actions/logAction";
+import { LOGED_IN_OR_OUT } from "../../actions/users/logAction";
 
 const initialLogState = {
   logIn: false
