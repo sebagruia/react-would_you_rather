@@ -55,8 +55,8 @@ class LogIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    loginField: state.chooseLoginReducer.loginField,
-    logIn: state.logReducer.logIn,
+    loginField: state.usersReducer.loginField,
+    logIn: state.usersReducer.logIn,
   };
 };
 

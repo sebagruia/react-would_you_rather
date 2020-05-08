@@ -1,9 +1,14 @@
 import { RECEIVE_ALL_QUESTIONS } from "../../actions/questions/receiveAllQuestionsAction";
 import { ADD_QUESTION } from "../../actions/questions/addQuestionAction";
 import { SAVE_ANSWER } from "../../actions/questions/saveAnswerAction";
+import { SET_OPTION_ONE_TEXT } from "../../actions/questions/setOptionOneText.Action";
+import { SET_OPTION_TWO_TEXT } from "../../actions/questions/setOptionTwoText.Action";
 
 const initialQuestionState = {
   questions: {},
+  optionOneText:"",
+  optionTwoText:""
+
 };
 
 export const questionsReducer = (state = initialQuestionState, action = {}) => {
@@ -32,6 +37,16 @@ export const questionsReducer = (state = initialQuestionState, action = {}) => {
             },
           },
         },
+      };
+      case SET_OPTION_ONE_TEXT:
+      return {
+        ...state,
+        optionOneText:action.payload
+      };
+    case SET_OPTION_TWO_TEXT:
+      return {
+        ...state,
+        optionTwoText:action.payload
       };
     default:
       return state;

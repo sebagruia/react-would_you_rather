@@ -77,10 +77,9 @@ const CreateQuestion = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    optionOneText: state.setOptionsReducer.optionOneText,
-    optionTwoText: state.setOptionsReducer.optionTwoText,
+    optionOneText: state.questionsReducer.optionOneText,
+    optionTwoText: state.questionsReducer.optionTwoText,
   };
 };
 

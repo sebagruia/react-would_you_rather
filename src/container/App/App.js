@@ -86,7 +86,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   const users = Object.values(state.usersReducer.users);
-  const userName = state.chooseLoginReducer.loginField;
+  const userName = state.usersReducer.loginField;
   const getAvatarUrl = () => {
     for (let user of users) {
       if (user.name === userName) {
@@ -105,8 +105,8 @@ const mapStateToProps = (state) => {
   return {
     users: state.usersReducer.users,
     questions: state.questionsReducer.questions,
-    logIn: state.logReducer.logIn,
-    userName: state.chooseLoginReducer.loginField,
+    logIn: state.usersReducer.logIn,
+    userName: state.usersReducer.loginField,
     avatarUrl: getAvatarUrl(),
     userId: getUserId(),
   };

@@ -7,7 +7,6 @@ const PollResults = (props) => {
 
   const { userName, avatarUrl, question } = props.location.state;
   const{users, userId, questions} = props;
-  console.log(props.location.state);
   const reRenderedQuestion = Object.values(questions).filter(renderedQuestion=>renderedQuestion.id===question.id);
   
   const questionOptionOneVotes = reRenderedQuestion[0].optionOne.votes.length;
