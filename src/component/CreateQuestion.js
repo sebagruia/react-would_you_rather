@@ -10,8 +10,7 @@ import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router-dom";
 
 const CreateQuestion = (props) => {
-  const { dispatch, userId, optionOneText, optionTwoText } = props;
-  const author = userId;
+  const { dispatch, author, optionOneText, optionTwoText } = props;
 
   const [redirect, setRedirect] = useState(false);
 

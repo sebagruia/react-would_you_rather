@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import {connect} from "react-redux";
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
 import { Route, NavLink } from "react-router-dom";
@@ -10,7 +11,6 @@ const CategorizedQuestions = (props) => {
   const selectUser = Object.values(users).filter(
     (user) => user.name === userName
   );
-
   // Questions are put in 2 categories: "answeredQuestions" and "unansweredQuestions" and are sorted in descending order
   const answeredQuestions = Object.values(questions)
     .filter(
@@ -70,7 +70,7 @@ const CategorizedQuestions = (props) => {
               return unansweredQuestions.map((question) => (
                 <Question 
                 key={question.id}
-                users={users}
+                // users={users}
                 question={question} />
               ));
             }}
@@ -82,7 +82,7 @@ const CategorizedQuestions = (props) => {
               return answeredQuestions.map((question) => (
                 <Question
                   key={question.id}
-                  users={users}
+                  // users={users}
                   question={question}
                   answered={true}
                 />
@@ -94,4 +94,13 @@ const CategorizedQuestions = (props) => {
     </Fragment>
   );
 };
-export default CategorizedQuestions;
+
+const mapStateToProps = (state)=>({
+  users:state.usersReducer.users,
+  questions:state.questionsReducer.questions,
+  userName: state.usersReducer.loginField
+})
+  
+
+
+export default connect(mapStateToProps)(CategorizedQuestions);

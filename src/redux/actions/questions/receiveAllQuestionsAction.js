@@ -12,7 +12,7 @@ export const receiveAllQuestionsAction = ()=>(dispatch)=>{
             type:RECEIVE_ALL_QUESTIONS,
             payload:questions
         });
-        dispatch(hideLoading());
+    dispatch(hideLoading());
    })
 
 }

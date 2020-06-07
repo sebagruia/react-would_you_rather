@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import logo from "../utils/images/logo.png";
 import { connect } from "react-redux";
 import { setLoginUserAction } from "../redux/actions/users/setLoginUserAction";
@@ -9,9 +9,9 @@ import Form from "react-bootstrap/Form";
 
 
 
-class LogIn extends Component {
-  render() {
-    const { users, onLoginChange, onSubmitUser, loginField } = this.props;
+const LogIn = (props)=> {
+
+    const { users, onLoginChange, onSubmitUser, loginField } = props;
 
     return (
       <Fragment>
@@ -50,7 +50,6 @@ class LogIn extends Component {
         </Card>
       </Fragment>
     );
-  }
 }
 
 const mapStateToProps = (state) => {
@@ -60,7 +59,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     // The user is selected using the "setLoginUserAction" action
     onLoginChange: (event) => {
@@ -76,5 +75,6 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

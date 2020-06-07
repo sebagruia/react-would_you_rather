@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
 import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+
 import LoadingBar from "react-redux-loading-bar";
+import { connect } from "react-redux";
+import { receiveUsersAction } from "../../redux/actions/users/receiveUsersAction";
+import { receiveAllQuestionsAction } from "../../redux/actions/questions/receiveAllQuestionsAction";
+
 import LogIn from "../../component/LogIn";
 import Navigation from "../../component/Navigation";
 import Leaderbord from "../../component/Leaderboard";
@@ -10,9 +15,10 @@ import PollResults from "../../component/PollResults";
 import CreateQuestion from "../../component/CreateQuestion";
 import CategorizedQuestions from "../../component/CategorizedQuestions";
 import NoMatch404 from "../../component/NoMatch404";
-import { connect } from "react-redux";
-import { receiveUsersAction } from "../../redux/actions/users/receiveUsersAction";
-import { receiveAllQuestionsAction } from "../../redux/actions/questions/receiveAllQuestionsAction";
+
+import {getLoggedUserId, getLoggedUserAvatarUrl} from "../../utils/utils";
+
+
 
 
 class App extends Component {
@@ -22,56 +28,40 @@ class App extends Component {
   }
 
   render() {
-    const {
-      users,
-      logIn,
-      userName,
-      questions,
-      avatarUrl,
-      userId
-    } = this.props;
-
+    const { users, logIn, userName, avatarUrl, userId } = this.props;
 
     return (
       <div>
         <LoadingBar />
         {/* If the user is not Loged In The App is redirected to "LogIn" page */}
-          {!logIn ? <Redirect to="/login" /> : null}
+        {!logIn ? <Redirect to="/login" /> : null}
         <Route exact path="/login">
-          <LogIn users={users}/>
+          <LogIn users={users} />
         </Route>
         {/* If the user is Loged In The App is redirected to "questions" page*/}
         {logIn ? (
           <Fragment>
             <Route path="/">
-            <Navigation userName={userName} avatarUrl={avatarUrl} />
+              <Navigation userName={userName} avatarUrl={avatarUrl} />
             </Route>
-              
-            <Redirect to="/questions"/>
+
+            <Redirect to="/questions" />
             <Switch>
               <Route path="/questions">
-              <Redirect to="/questions/unanswered-questions"/>
-                <CategorizedQuestions
-                  users={users}
-                  userName={userName}
-                  questions={questions}
-                />
+                <Redirect to="/questions/unanswered-questions" />
+                <CategorizedQuestions />
               </Route>
               <Route exact path="/leaderbord">
                 <Leaderbord users={users} />
               </Route>
               <Route exact path="/add-question">
-                <CreateQuestion userId={userId} />
+                <CreateQuestion author={userId} />
               </Route>
               <Route path="/poll/:id">
-                <Poll authedUser={userId} />
+                <Poll />
               </Route>
               <Route path="/pollresults/:id">
-                <PollResults
-                  users={users}
-                  userId={userId}
-                  questions={questions}
-                />
+                <PollResults/>
               </Route>
               <Route path="*">
                 <NoMatch404 />
@@ -87,32 +77,18 @@ class App extends Component {
 const mapStateToProps = (state) => {
   const users = Object.values(state.usersReducer.users);
   const userName = state.usersReducer.loginField;
-  const getAvatarUrl = () => {
-    for (let user of users) {
-      if (user.name === userName) {
-        return user.avatarURL.name;
-      }
-    }
-  };
-  const getUserId = () => {
-    for (let user of users) {
-      if (user.name === userName) {
-        return user.id;
-      }
-    }
-  };
 
   return {
     users: state.usersReducer.users,
     questions: state.questionsReducer.questions,
     logIn: state.usersReducer.logIn,
     userName: state.usersReducer.loginField,
-    avatarUrl: getAvatarUrl(),
-    userId: getUserId(),
+    avatarUrl: getLoggedUserAvatarUrl(users,userName),
+    userId: getLoggedUserId(users,userName),
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     retreiveUsers: () => dispatch(receiveUsersAction()),
     retreiveQuestions: () => dispatch(receiveAllQuestionsAction()),

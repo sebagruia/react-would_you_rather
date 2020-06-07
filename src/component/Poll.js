@@ -2,15 +2,14 @@ import React, { useState, Fragment } from "react";
 import { withRouter, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import { saveAnswerAction } from "../redux/actions/questions/saveAnswerAction";
-import { receiveAllQuestionsAction } from "../redux/actions/questions/receiveAllQuestionsAction";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 
 
 const Poll = (props) => {
-  const { userName, avatarUrl, question } = props.location.state;
-  const { authedUser, dispatch } = props;
+  const { authedUser, questionUserName, questionUserAvatarUrl, question } = props.location.state;
+  const { dispatch } = props;
 
   const [redirect, setRedirect] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -22,7 +21,6 @@ const Poll = (props) => {
       dispatch(
         saveAnswerAction({ authedUser, qid: question.id, answer: inputValue })
       );
-      dispatch(receiveAllQuestionsAction());
       setRedirect(true);
     }
   };
@@ -38,21 +36,21 @@ const Poll = (props) => {
         to={{
           pathname: `/pollresults/${question.id}`,
           state: {
-            userName: userName,
-            avatarUrl: avatarUrl,
+            questionUserName: questionUserName,
+            questionUserAvatarUrl: questionUserAvatarUrl,
+            authedUser:authedUser,
             question: question,
-            questionId: question.id
           },
         }}
       />
     ) : (
         <div className="user poll">
           <div className="user-name">
-            <h5>{userName} asks:</h5>
+            <h5>{questionUserName} asks:</h5>
           </div>
           <div className="user-info-container-poll">
             <div className="image-container poll-image-container align-middle">
-              <img src={avatarUrl} alt="avatar" />
+              <img src={questionUserAvatarUrl} alt="avatar" />
             </div>
 
             <Form

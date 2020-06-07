@@ -34,6 +34,9 @@ a:hover {
 .logo-image {
   margin-right: 5px;
 }
+.navbar{
+  background-color: #e5e5e5!important;
+}
 .navbar-nav {
   align-items: center;
 }

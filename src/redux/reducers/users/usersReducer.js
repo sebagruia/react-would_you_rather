@@ -48,7 +48,6 @@ export const usersReducer = (state = initialStateUsers, action = {}) => {
       return { ...state, loginField: action.payload };
     case LOGED_IN_OR_OUT:
       return { ...state, logIn: action.payload };
-
     default:
       return state;
   }

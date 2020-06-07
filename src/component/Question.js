@@ -1,10 +1,11 @@
 import React, {Fragment, useState } from "react";
+import {connect} from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import {getLoggedUserId} from "../utils/utils";
 
 const Question = (props) => {
-  const { users, question, answered } = props;
-
+  const { users, loggedUserName, question, answered } = props;
   const [redirect, setRedirect] = useState(false);
 
   const redirectToPoll = (event) => {
@@ -12,9 +13,16 @@ const Question = (props) => {
     setRedirect(true);
   };
 
-  const selectUser = Object.values(users).filter(
+  const getQuestionUser = Object.values(users).filter(
     (user) => user.id === question.author
   );
+
+  const stateToPass = {
+    questionUserName: getQuestionUser[0].name,
+    questionUserAvatarUrl: getQuestionUser[0].avatarURL.name,
+    authedUser:getLoggedUserId(users, loggedUserName),
+    question: question
+  };
 
   return (
     <Fragment>
@@ -23,11 +31,7 @@ const Question = (props) => {
         <Redirect
           to={{
             pathname: `/poll/${question.id}`,
-            state: {
-              userName: selectUser[0].name,
-              avatarUrl: selectUser[0].avatarURL.name,
-              question: question
-            },
+            state: stateToPass
           }}
         />
       /* If "redirect" variable is "true" and the "answered" prop was passed from parent then the page is redirected to "PollResults" page */
@@ -35,22 +39,18 @@ const Question = (props) => {
         <Redirect
           to={{
             pathname: `/pollresults/${question.id}`,
-            state: {
-              userName: selectUser[0].name,
-              avatarUrl: selectUser[0].avatarURL.name,
-              question: question
-            },
+            state:stateToPass
           }}
         />
       ) : (
         <div className="user">
           <div className="user-name">
-            <h5>{selectUser[0].name} asks:</h5>
+            <h5>{getQuestionUser[0].name} asks:</h5>
           </div>
 
           <div className="user-info-container">
             <div className="image-container align-middle">
-              <img src={selectUser[0].avatarURL.name} alt="avatar" />
+              <img src={getQuestionUser[0].avatarURL.name} alt="avatar" />
             </div>
             <div className="question-container">
               <h5>Would you rather</h5>
@@ -70,4 +70,11 @@ const Question = (props) => {
   );
 };
 
-export default withRouter(Question);
+const mapStateToProps = (state)=>({
+  users:state.usersReducer.users,
+  loggedUserName:state.usersReducer.loginField
+})
+
+
+
+export default withRouter(connect(mapStateToProps)(Question));
