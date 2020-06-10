@@ -2,13 +2,12 @@ import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import {getQuestionOfUser} from "../utils/utils";
 
 const Question = (props) => {
   const { users, question, answered } = props;
 
-  const getQuestionUser = Object.values(users).filter(
-    (user) => user.id === question.author
-  );
+  const getQuestionUser = getQuestionOfUser(users, question);
 
   const redirectToPoll = (event) => {
     event.preventDefault();

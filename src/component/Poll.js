@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import { saveAnswerAction } from "../redux/actions/questions/saveAnswerAction";
-import {getLoggedUserId} from "../utils/utils";
+import {getLoggedUserId, getQuestionOfUser} from "../utils/utils";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {NavLink} from "react-router-dom";
@@ -18,7 +18,7 @@ const Poll = (props) => {
   const questionId = props.match.params.question_id;
   const question = Object.values(questions).filter(question=>question.id === questionId);
 
-// In case of entering a wrong URL to question this is returned:
+// In case of entering a wrong URL to question, this is returned:
   if(question.length === 0){
     return  (<div className="error-page">
               <h3>No Such Question</h3>
@@ -27,9 +27,7 @@ const Poll = (props) => {
   }
  // ==============================================================
 
-  const getQuestionUser = Object.values(users).filter(
-    (user) => user.id === question[0].author
-  );
+  const getQuestionUser = getQuestionOfUser(users, question[0]);
 
   const redirectToPollResults = (event) => {
     event.preventDefault();

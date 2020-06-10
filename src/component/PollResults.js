@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import {getLoggedUserId} from "../utils/utils";
+import {getLoggedUserId, getQuestionOfUser} from "../utils/utils";
 
 const PollResults = (props) => {
 
@@ -11,7 +11,7 @@ const PollResults = (props) => {
   const question = Object.values(questions).filter(question=>question.id === questionId);
   const authedUser = getLoggedUserId(users,loggedUserName)
 
-  // In case of entering a wrong URL to pollResults this is returned:
+  // In case of entering a wrong URL to pollResults, this is returned:
   if(question.length === 0){
     return  (<div className="error-page">
               <h3>No Such Poll Results</h3>
@@ -20,9 +20,7 @@ const PollResults = (props) => {
   }
  // ==============================================================
 
-  const getQuestionUser = Object.values(users).filter(
-    (user) => user.id === question[0].author
-  );
+ const getQuestionUser = getQuestionOfUser(users, question[0]);
 
   // I'm geting the question from store with the updated results
   const reRenderedQuestion = Object.values(questions).filter(renderedQuestion => renderedQuestion.id === questionId);

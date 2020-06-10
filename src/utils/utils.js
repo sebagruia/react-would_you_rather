@@ -15,3 +15,10 @@ export const getLoggedUserAvatarUrl = (users, userName) => {
     }
   }
 };
+
+export const getQuestionOfUser = (users, question)=>{
+  return Object.values(users).filter(
+    (user) => user.id === question.author
+  )
+  
+};
