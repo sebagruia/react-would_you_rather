@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/react-would_you_rather/static/css/main.950931aa.chunk.css",
-    "main.js": "/react-would_you_rather/static/js/main.d5be9f52.chunk.js",
-    "main.js.map": "/react-would_you_rather/static/js/main.d5be9f52.chunk.js.map",
+    "main.css": "/react-would_you_rather/static/css/main.45b5992d.chunk.css",
+    "main.js": "/react-would_you_rather/static/js/main.d3dd6dd9.chunk.js",
+    "main.js.map": "/react-would_you_rather/static/js/main.d3dd6dd9.chunk.js.map",
     "runtime-main.js": "/react-would_you_rather/static/js/runtime-main.32529cff.js",
     "runtime-main.js.map": "/react-would_you_rather/static/js/runtime-main.32529cff.js.map",
     "static/css/2.de424728.chunk.css": "/react-would_you_rather/static/css/2.de424728.chunk.css",
-    "static/js/2.b34956b1.chunk.js": "/react-would_you_rather/static/js/2.b34956b1.chunk.js",
-    "static/js/2.b34956b1.chunk.js.map": "/react-would_you_rather/static/js/2.b34956b1.chunk.js.map",
+    "static/js/2.d3594e82.chunk.js": "/react-would_you_rather/static/js/2.d3594e82.chunk.js",
+    "static/js/2.d3594e82.chunk.js.map": "/react-would_you_rather/static/js/2.d3594e82.chunk.js.map",
     "index.html": "/react-would_you_rather/index.html",
-    "precache-manifest.af17ffe91ed7e9fa0f526ce678e7d18f.js": "/react-would_you_rather/precache-manifest.af17ffe91ed7e9fa0f526ce678e7d18f.js",
+    "precache-manifest.1494ff220164c454082f5144e0980218.js": "/react-would_you_rather/precache-manifest.1494ff220164c454082f5144e0980218.js",
     "service-worker.js": "/react-would_you_rather/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/react-would_you_rather/static/css/2.de424728.chunk.css.map",
-    "static/css/main.950931aa.chunk.css.map": "/react-would_you_rather/static/css/main.950931aa.chunk.css.map",
-    "static/js/2.b34956b1.chunk.js.LICENSE.txt": "/react-would_you_rather/static/js/2.b34956b1.chunk.js.LICENSE.txt",
+    "static/css/main.45b5992d.chunk.css.map": "/react-would_you_rather/static/css/main.45b5992d.chunk.css.map",
+    "static/js/2.d3594e82.chunk.js.LICENSE.txt": "/react-would_you_rather/static/js/2.d3594e82.chunk.js.LICENSE.txt",
     "static/media/johndoe.png": "/react-would_you_rather/static/media/johndoe.50d048d7.png",
     "static/media/logo.png": "/react-would_you_rather/static/media/logo.2056c12c.png",
     "static/media/sarahedo.png": "/react-would_you_rather/static/media/sarahedo.b5af26a6.png",
@@ -22,8 +22,8 @@
   "entrypoints": [
     "static/js/runtime-main.32529cff.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.b34956b1.chunk.js",
-    "static/css/main.950931aa.chunk.css",
-    "static/js/main.d5be9f52.chunk.js"
+    "static/js/2.d3594e82.chunk.js",
+    "static/css/main.45b5992d.chunk.css",
+    "static/js/main.d3dd6dd9.chunk.js"
   ]
 }
