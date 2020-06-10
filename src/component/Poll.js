@@ -1,27 +1,43 @@
 import React, { useState, Fragment } from "react";
-import { withRouter, Redirect} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import { saveAnswerAction } from "../redux/actions/questions/saveAnswerAction";
+import {getLoggedUserId} from "../utils/utils";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {NavLink} from "react-router-dom";
 
 
 
 const Poll = (props) => {
-  const { authedUser, questionUserName, questionUserAvatarUrl, question } = props.location.state;
-  const { dispatch } = props;
-
-  const [redirect, setRedirect] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  // When this function is run, it sets the "redirect" variable to "true", saves the newly created question to the "fake" database using "saveAnswerAction" action and rerenders the questions from database using the "receiveAllQuestionsAction" action
+  const { dispatch, users, loggedUserName, questions  } = props;
+  const authedUser = getLoggedUserId(users, loggedUserName);
+  
+  const questionId = props.match.params.question_id;
+  const question = Object.values(questions).filter(question=>question.id === questionId);
+
+// In case of entering a wrong URL to question this is returned:
+  if(question.length === 0){
+    return  (<div className="error-page">
+              <h3>No Such Question</h3>
+              <h6>Please Try going {<NavLink to="/"> HOME</NavLink>}</h6>
+            </div>)
+  }
+ // ==============================================================
+
+  const getQuestionUser = Object.values(users).filter(
+    (user) => user.id === question[0].author
+  );
+
   const redirectToPollResults = (event) => {
     event.preventDefault();
     if (inputValue) {
       dispatch(
-        saveAnswerAction({ authedUser, qid: question.id, answer: inputValue })
+        saveAnswerAction({ authedUser, qid: questionId, answer: inputValue })
       );
-      setRedirect(true);
+        props.history.push(`/pollresults/${questionId}`)
     }
   };
 
@@ -31,26 +47,13 @@ const Poll = (props) => {
 
   return (
     <Fragment>
-    {redirect ? (
-      <Redirect
-        to={{
-          pathname: `/pollresults/${question.id}`,
-          state: {
-            questionUserName: questionUserName,
-            questionUserAvatarUrl: questionUserAvatarUrl,
-            authedUser:authedUser,
-            question: question,
-          },
-        }}
-      />
-    ) : (
-        <div className="user poll">
+      <div className="user poll">
           <div className="user-name">
-            <h5>{questionUserName} asks:</h5>
+            <h5>{getQuestionUser[0].name} asks:</h5>
           </div>
           <div className="user-info-container-poll">
             <div className="image-container poll-image-container align-middle">
-              <img src={questionUserAvatarUrl} alt="avatar" />
+              <img src={getQuestionUser[0].avatarURL.name} alt="avatar" />
             </div>
 
             <Form
@@ -63,7 +66,7 @@ const Poll = (props) => {
                   <Form.Check
                     onChange={handleInputChange}
                     type="radio"
-                    label={question.optionOne.text}
+                    label={question[0].optionOne.text}
                     name="selection"
                     id="first-question-checkbox"
                     value="optionOne"
@@ -76,7 +79,7 @@ const Poll = (props) => {
                   <Form.Check
                     onChange={handleInputChange}
                     type="radio"
-                    label={question.optionTwo.text}
+                    label={question[0].optionTwo.text}
                     name="selection"
                     id="second-question-checkbox"
                     value="optionTwo"
@@ -94,9 +97,14 @@ const Poll = (props) => {
             </Form>
           </div>
         </div>
-      )}
   </Fragment>
   );
 };
 
-export default withRouter(connect()(Poll)); //withRouter component from react-router-dom lets you acces the props passed via the Redirect component
+const mapStateToProps = (state)=>({
+  users:state.usersReducer.users,
+  loggedUserName:state.usersReducer.loginField,
+  questions: state.questionsReducer.questions,
+})
+
+export default withRouter(connect(mapStateToProps)(Poll)); //withRouter component from react-router-dom lets you acces the props passed via the Redirect component

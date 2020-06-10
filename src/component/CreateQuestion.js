@@ -37,7 +37,7 @@ const CreateQuestion = (props) => {
   return (
     <Fragment>
       {redirect ? (
-        <Redirect to="/questions" />
+        <Redirect to="/" />
       ) : (
         <Card className="createQuestion">
           <Card.Header>

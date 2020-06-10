@@ -1,48 +1,28 @@
-import React, {Fragment, useState } from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import {getLoggedUserId} from "../utils/utils";
 
 const Question = (props) => {
-  const { users, loggedUserName, question, answered } = props;
-  const [redirect, setRedirect] = useState(false);
-
-  const redirectToPoll = (event) => {
-    event.preventDefault();
-    setRedirect(true);
-  };
+  const { users, question, answered } = props;
 
   const getQuestionUser = Object.values(users).filter(
     (user) => user.id === question.author
   );
 
-  const stateToPass = {
-    questionUserName: getQuestionUser[0].name,
-    questionUserAvatarUrl: getQuestionUser[0].avatarURL.name,
-    authedUser:getLoggedUserId(users, loggedUserName),
-    question: question
+  const redirectToPoll = (event) => {
+    event.preventDefault();
+    if(!answered){
+      props.history.push(`/questions/${question.id}`);
+    }
+    else{
+      props.history.push(`/pollresults/${question.id}`);
+    }
+    
   };
 
   return (
     <Fragment>
-      {/* If "redirect" variable is "true" and the "answered" prop was not passed from parent then the page is redirected to "Poll" page */}
-      {redirect && !answered ? (
-        <Redirect
-          to={{
-            pathname: `/poll/${question.id}`,
-            state: stateToPass
-          }}
-        />
-      /* If "redirect" variable is "true" and the "answered" prop was passed from parent then the page is redirected to "PollResults" page */
-      ) : redirect && answered ? (
-        <Redirect
-          to={{
-            pathname: `/pollresults/${question.id}`,
-            state:stateToPass
-          }}
-        />
-      ) : (
         <div className="user">
           <div className="user-name">
             <h5>{getQuestionUser[0].name} asks:</h5>
@@ -65,14 +45,12 @@ const Question = (props) => {
             </div>
           </div>
         </div>
-      )}
     </Fragment>
   );
 };
 
 const mapStateToProps = (state)=>({
-  users:state.usersReducer.users,
-  loggedUserName:state.usersReducer.loginField
+  users:state.usersReducer.users
 })
 
 

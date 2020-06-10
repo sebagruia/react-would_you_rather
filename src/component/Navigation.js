@@ -18,6 +18,7 @@ const Navigation = props => {
   return (
     <Navbar bg="light" expand="lg">
       <div className="container">
+
         <Navbar.Brand>
           <img
             src={logo}
@@ -28,28 +29,29 @@ const Navigation = props => {
           />
           Would You Rather?
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <NavLink to="/questions/unanswered-questions" activeClassName="selected">
+            <NavLink exact to="/" activeClassName="selected">
               <i className="fas fa-home"></i>
               Home
             </NavLink>
-            <NavLink to="/leaderbord" activeClassName="selected">
+            <NavLink  to="/leaderbord" activeClassName="selected">
               <i className="fas fa-medal"></i>
               Leaderboard
             </NavLink>
-            <NavLink to="/add-question" activeClassName="selected">
+            <NavLink to="/add" activeClassName="selected">
               <i className="fas fa-plus-circle"></i>
               Add question
             </NavLink>
-            <NavLink  to="/questions/unanswered-questions">
+            <NavLink  to="/" >
               <div className="nav-link-img-container">
               <img className="user-avatar" src={avatarUrl} alt="user avatar" />
              <p>Hello, {userName}</p> 
               </div>
-            </NavLink>
-            <NavLink to="/login" onClick={onClick}>
+            </NavLink >
+            <NavLink  to="/"  onClick={onClick}>
               <i className="fas fa-minus-circle"></i>
               LogOut
             </NavLink>
@@ -57,8 +59,6 @@ const Navigation = props => {
         </Navbar.Collapse>
       </div>
     </Navbar>
-    
-    
   );
 };
 

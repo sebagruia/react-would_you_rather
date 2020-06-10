@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./App.css";
-import { Route, Redirect, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 
 import LoadingBar from "react-redux-loading-bar";
 import { connect } from "react-redux";
@@ -16,10 +16,7 @@ import CreateQuestion from "../../component/CreateQuestion";
 import CategorizedQuestions from "../../component/CategorizedQuestions";
 import NoMatch404 from "../../component/NoMatch404";
 
-import {getLoggedUserId, getLoggedUserAvatarUrl} from "../../utils/utils";
-
-
-
+import { getLoggedUserId, getLoggedUserAvatarUrl } from "../../utils/utils";
 
 class App extends Component {
   componentDidMount() {
@@ -33,42 +30,34 @@ class App extends Component {
     return (
       <div>
         <LoadingBar />
-        {/* If the user is not Loged In The App is redirected to "LogIn" page */}
-        {!logIn ? <Redirect to="/login" /> : null}
-        <Route exact path="/login">
-          <LogIn users={users} />
-        </Route>
-        {/* If the user is Loged In The App is redirected to "questions" page*/}
+
         {logIn ? (
           <Fragment>
-            <Route path="/">
               <Navigation userName={userName} avatarUrl={avatarUrl} />
-            </Route>
-
-            <Redirect to="/questions" />
             <Switch>
-              <Route path="/questions">
-                <Redirect to="/questions/unanswered-questions" />
+              <Route exact path="/">
                 <CategorizedQuestions />
               </Route>
-              <Route exact path="/leaderbord">
+              <Route path="/leaderbord">
                 <Leaderbord users={users} />
               </Route>
-              <Route exact path="/add-question">
+              <Route path="/add">
                 <CreateQuestion author={userId} />
               </Route>
-              <Route path="/poll/:id">
+              <Route path="/questions/:question_id">
                 <Poll />
               </Route>
-              <Route path="/pollresults/:id">
-                <PollResults/>
+              <Route path="/pollresults/:question_id">
+                <PollResults />
               </Route>
               <Route path="*">
                 <NoMatch404 />
               </Route>
             </Switch>
           </Fragment>
-        ) : null}
+        ) 
+        : <LogIn users={users} />
+        }
       </div>
     );
   }
@@ -83,8 +72,8 @@ const mapStateToProps = (state) => {
     questions: state.questionsReducer.questions,
     logIn: state.usersReducer.logIn,
     userName: state.usersReducer.loginField,
-    avatarUrl: getLoggedUserAvatarUrl(users,userName),
-    userId: getLoggedUserId(users,userName),
+    avatarUrl: getLoggedUserAvatarUrl(users, userName),
+    userId: getLoggedUserId(users, userName),
   };
 };
 
